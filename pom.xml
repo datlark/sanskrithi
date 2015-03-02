@@ -1,7 +1,6 @@
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
 	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
 	<modelVersion>4.0.0</modelVersion>
-	<artifactId>SAJ</artifactId>
 	<packaging>war</packaging>
 	<version>1.0</version>
 	<name>Sanskrithi Maven Webapp</name>
@@ -50,7 +49,7 @@
 
 	</dependencies>
 	<build>
-		<finalName>SAJ</finalName>
+		<finalName>saj</finalName>
 		<plugins>
 			<plugin>
 				<groupId>org.apache.tomcat.maven</groupId>
@@ -58,7 +57,7 @@
 
 				<version>2.0</version>
 				<configuration>
-					<path>/SAJ</path>
+					<path>/saj</path>
 					<update>true</update>
 					<url>http://localhost:8080/manager/text</url>
 					<username>tomcat</username>
@@ -68,5 +67,6 @@
 
 		</plugins>
 	</build>
-	<groupId>SAJ</groupId>
+	<groupId>saj</groupId>
+	<artifactId>saj</artifactId>
 </project>

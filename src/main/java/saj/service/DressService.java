@@ -8,7 +8,7 @@ public class DressService {
 
     public Dress getDefaultUser() {
         Dress dress = new Dress();
-        dress.setName("dress");
+        dress.setName("dressrrrr");
         
         return dress;
     }

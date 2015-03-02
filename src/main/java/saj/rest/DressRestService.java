@@ -9,7 +9,7 @@ import saj.domain.Dress;
 import saj.service.DressService;
 
 
-@Path("/users")
+@Path("/dress")
 public class DressRestService {
 
     @GET

@@ -14,7 +14,7 @@
 
         <init-param>
             <param-name>com.sun.jersey.config.property.packages</param-name>
-            <param-value>swan.rest</param-value>
+            <param-value>saj.rest</param-value>
         </init-param>
 
         <init-param>
