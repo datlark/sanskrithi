@@ -19,6 +19,7 @@
 	{
 		font-size: 13pt;
 		margin: 0 0 1em 0;
+		align: center;
 	}
 
 	/* Section/Article */
@@ -402,3 +403,23 @@
 		border-top: solid 1px #ccc;
 		margin: 4em 0 0 0;
 	}
+	
+.salePrice{
+ 
+ color:#FF0000;
+ float:left;
+ font-family:Verdana;
+ font-size: 0.75em;
+ font-weight:bold;
+ 
+ }
+ 
+ .dressDesc{
+ 
+ color:black;
+ float:left;
+ font-family:Verdana;
+ font-size: 0.65em;
+ font-weight:bold;
+ 
+ }

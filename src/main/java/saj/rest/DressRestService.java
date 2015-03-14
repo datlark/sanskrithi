@@ -1,5 +1,7 @@
 package saj.rest;
 
+import java.util.List;
+
 import javax.ws.rs.GET;
 import javax.ws.rs.Path;
 import javax.ws.rs.Produces;
@@ -14,8 +16,14 @@ public class DressRestService {
 
     @GET
     @Produces(MediaType.APPLICATION_JSON)
-    public Dress getDefaultUserInJSON() {
+    public List<Dress> get () {
         DressService dressService = new DressService();
-        return dressService.getDefaultUser();
+        try {
+			return dressService.getAllDresses();
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return null;
     }
 }

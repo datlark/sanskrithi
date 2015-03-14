@@ -6,7 +6,7 @@
 -->
 <html>
 	<head>
-		<title>Sanskrithi</title>
+		<title>Sanskriti</title>
 		<meta http-equiv="content-type" content="text/html; charset=utf-8" />
 		<meta name="description" content="" />
 		<meta name="keywords" content="" />
@@ -16,30 +16,27 @@
 		<script src="js/skel.min.js"></script>
 		<script src="js/skel-layers.min.js"></script>
 		<script src="js/init.js"></script>
+		<script src= "http://ajax.googleapis.com/ajax/libs/angularjs/1.2.26/angular.min.js"></script>
+		<script src="http://crypto-js.googlecode.com/svn/tags/3.1.2/build/rollups/sha1.js"></script>
 		<noscript>
 			<link rel="stylesheet" href="css/skel.css" />
 			<link rel="stylesheet" href="css/style.css" />
 			<link rel="stylesheet" href="css/style-desktop.css" />
 		</noscript>
-		<script src="lib/angular/angular.js"></script>
-	<script src="lib/angular/angular-resource.js"></script>
-	<script src="js/angular/services.js"></script>
-	<script src="js/angular/controllers.js"></script>
-	<script src="js/angular/filters.js"></script>
-	<script src="js/angular/directives.js"></script>
+	<script src="js/controllers.js"></script>
+	
 		
 		<!--[if lte IE 8]><link rel="stylesheet" href="css/ie/v8.css" /><![endif]-->
 	</head>
-	<body class="homepage">
-	<script src="js/angular/app.js"></script>
-{{ name }}
+	<body  ng-app="" bgcolor="#DFE2DB">
+
 		<!-- Header -->
 			<div id="header-wrapper">
 				<header id="header" class="container">
 				
 					<!-- Logo -->
 						<div id="logo">
-							<h1><a href="index.html">Sanskrithi</a></h1>
+							<a href="index.html"><img src="images/company.jpg" width="250px"></a></h1>
 						</div>
 						<h3>Indian Apparel & Jewelery</h3>				
 					<div class="3u">
@@ -77,83 +74,25 @@
 					
 				</header>
 			</div>
-		
+
 				
 		<!-- Features -->
 			<div id="features-wrapper">
 				<div class="container">
-					<div class="row">
-						<div class="3u">
-						
-							<!-- Box -->
-								<section class="box feature">
-									<a href="#" class="image featured"><img src="images/1.jpg" alt="" /></a>
-<!--									<div class="inner">
-										<header>
-											<h2>Put something here</h2>
-											<p>Maybe here as well I think</p>
-										</header>
-										<p>Phasellus quam turpis, feugiat sit amet in, hendrerit in lectus. Praesent sed semper amet bibendum tristique fringilla.</p>
-									</div> -->
-								</section>
-
+					<div class="row" ng-controller="Dresses">
+					
+						<div class="2u" ng-repeat="dress in dresses">
+							
+									<section class="box feature">
+											<a href="#" class="image featured"><img src="https://googledrive.com/host/0B2yfPSrBHXFFfl9sZEN0VmcwMXpvVzJ3aW90cDVkc0MyUElJdHRtNDk4S3BLMzc0ZjlCLUU/{{dress.id}}.jpg" alt="" /></a>
+											<div style="margin:0;padding:0;line-height:1.0;"><font class="dressDesc">{{dress.name}}</font><br/>
+											<font class="salePrice">${{dress.price}}</font></div>
+											
+									
+									</section>
+													
 						</div>
-						<div class="3u">
-						
-							<!-- Box -->
-								<section class="box feature">
-									<a href="#" class="image featured"><img src="images/2.jpg" alt="" /></a>
-								</section>
-
-						</div>
-						<div class="3u">
-						
-							<!-- Box -->
-								<section class="box feature last">
-									<a href="#" class="image featured"><img src="images/3.jpg" alt="" /></a>
-								</section>
-
-						</div>
-						<div class="3u">
-						
-							<!-- Box -->
-								<section class="box feature last">
-									<a href="#" class="image featured"><img src="images/3.jpg" alt="" /></a>
-								</section>
-
-						</div>
-						<div class="3u">
-						
-							<!-- Box -->
-								<section class="box feature last">
-									<a href="#" class="image featured"><img src="images/3.jpg" alt="" /></a>
-								</section>
-
-						</div>						
-						<div class="3u">
-						
-							<!-- Box -->
-								<section class="box feature last">
-									<a href="#" class="image featured"><img src="images/3.jpg" alt="" /></a>
-								</section>
-
-						</div>
-						<div class="3u">
-						
-							<!-- Box -->
-								<section class="box feature last">
-									<a href="#" class="image featured"><img src="images/3.jpg" alt="" /></a>
-								</section>
-
-						</div>
-						<div class="3u">
-						
-							<!-- Box -->
-								<section class="box feature last">
-									<a href="#" class="image featured"><img src="images/3.jpg" alt="" /></a>
-								</section>
-
-						</div>						
+					
 					</div>
 				</div>
 			</div>
