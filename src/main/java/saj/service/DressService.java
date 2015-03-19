@@ -7,6 +7,7 @@ import java.util.List;
 import org.hibernate.HibernateException;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
+import org.hibernate.StatelessSession;
 import org.hibernate.Transaction;
 
 import saj.domain.Dress;
@@ -81,11 +82,11 @@ public class DressService {
     	 List<Dress> dressList  = new ArrayList<Dress>();
     	
     	SessionFactory factory = HibernateUtil.getSessionFactory();
-        Session session = factory.openSession();
+        StatelessSession session = factory.openStatelessSession();
         Transaction tx = null;
         try{
            tx = session.beginTransaction();
-           List dresses = session.createQuery("FROM Dress").list(); 
+           List dresses = session.createQuery("FROM Dress D ORDER BY D.orderID ").list(); 
            for (Iterator iterator = 
         		   dresses.iterator(); iterator.hasNext();){
               Dress dress = (Dress) iterator.next(); 
