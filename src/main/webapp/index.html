@@ -25,35 +25,48 @@
 	<link rel="stylesheet" href="css/style.css" />
 	<link rel="stylesheet" href="css/style-desktop.css" />
 </noscript>
-<script src="js/controllers.js"></script>
+<link rel="icon" type="image/ico" href="images/saj-icon.ico"></link>
 
 
 <!--[if lte IE 8]><link rel="stylesheet" href="css/ie/v8.css" /><![endif]-->
 </head>
-<body ng-app="" bgcolor="#DFE2DB">
+<body ng-app="sajApp">
 
+<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+  ga('create', 'UA-61247237-1', 'auto');
+  ga('send', 'pageview');
+
+</script>
+
+	<script src="js/app.js"></script>
+	<script src="js/controllers.js"></script>
 	<!-- Header -->
 	<div id="header-wrapper">
 		<header id="header" class="container">
 
 			<!-- Logo -->
-			<div id="logo">
+			<div>
 				<a href="index.html"><img src="images/company.png" width="250px"></a>
-				</h1>
+
 			</div>
-			<h4>Call or email to schedule appointment.</h4>
+			
 			<div class="3u">
+			
 				<!-- Nav -->
 				<nav id="nav">
 
 					<!-- Contact -->
 
-					<h3>Contact Us</h3>
-					19027 B St <br /> Omaha, NE 68130<br /> <a href="tel:+14025770055">402-577-0055</a><br />
-					<a href="mailto:sowjanya.datla@gmail.com">sowjanya.datla@gmail.com</a>
+					<h4><u>Contact Us</u></h4>
+					 <a href="tel:+14025770055">402-577-0055</a><br /> <a href="mailto:sowjanya.datla@gmail.com">sowjanya.datla@gmail.com</a>
 
 					<ul>
-					<!--
+						<!--
 						<li><a href="#" class="icon fa-facebook"><span class="label">Facebook</span></a></li>
 						<li><a href="#" class="icon fa-twitter"><span class="label">Twitter</span></a></li>
 						<li><a href="#" class="icon fa-instagram"><span class="label">Instagram</span></a></li>
@@ -66,29 +79,49 @@
 
 			</div>
 
-
+			<!-- 
+			<select ng-model="type">
+				<option value="Ku">Alphabetical</option>
+				<option value="age">Newest</option>
+			</select>
+			
+			 -->
+			<div id="tabs">
+				 <input id="tab-1" type="radio" value="Kurthi" name="tab-group" ng-model="type" checked="checked"/>
+				 <label for="tab-1">Kurthis</label>
+				 <input id="tab-3" type="radio" value="Set" name="tab-group" ng-model="type"/>
+				 <label for="tab-3">Sets</label>
+				 <input id="tab-2" type="radio" value="Blouse" name="tab-group" ng-model="type"/>
+				 <label for="tab-2">Blouses</label>
+			 </div>
 		</header>
 	</div>
 
 
-	<input type="text" ng-model="type">
 
-<select ng-model="type">
-  <option value="Ku">Alphabetical</option>
-  <option value="age">Newest</option>
-</select>
 
 	<!-- Features -->
 	<div id="features-wrapper">
+
+
 		<div class="container">
+
 			<div class="row" ng-controller="Dresses">
 
 				<div class="2u" ng-repeat="dress in dresses | filter:type">
 
 					<section class="box feature">
-						<a href="#" class="image featured"><img
+						<a href="#" class="image featured">
+						
+						 <img
+          bn-lazy-src="https://googledrive.com/host/0B2yfPSrBHXFFfkxxUEplYlVsYWVoMlVQMGJPNnJ1NFlKeXV5Zmg5QUdrR2pNU2RLQms0dmM/{{dress.id}}.jpg"
+
+          alt="Christina Cox"/>
+						<!-- <img
 							src="https://googledrive.com/host/0B2yfPSrBHXFFfkxxUEplYlVsYWVoMlVQMGJPNnJ1NFlKeXV5Zmg5QUdrR2pNU2RLQms0dmM/{{dress.id}}.jpg"
-							alt="" /></a>
+							alt="" />  -->
+							
+							</a>
 						<div style="margin: 0; padding: 0; line-height: 1.0;">
 							<font class="dressDesc">{{dress.name}}</font><br /> <font
 								class="salePrice">${{dress.price}}</font>
@@ -110,14 +143,7 @@
 		<footer id="footer" class="container">
 	</div>
 	<div class="row">
-		<div class="13u">
-			<div id="copyright">
-				<ul class="menu">
-					<li>&copy; Untitled. All rights reserved</li>
-					<li>Design: <a href="http://html5up.net">HTML5 UP</a></li>
-				</ul>
-			</div>
-		</div>
+		<div class="13u"></div>
 	</div>
 	</footer>
 	</div>
