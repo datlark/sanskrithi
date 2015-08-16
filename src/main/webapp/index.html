@@ -18,11 +18,15 @@
 <script src="js/init.js"></script>
 <script src="lib/angular/angular.js"></script>
 <script src="lib/angular/angular-cookies.js"></script>
+<script type="text/javascript" src="js/magnifier/Event.js"></script>
+<script type="text/javascript" src="js/magnifier/Magnifier.js"></script>
+
 
 <noscript>
 	<link rel="stylesheet" href="css/skel.css" />
 	<link rel="stylesheet" href="css/style.css" />
 	<link rel="stylesheet" href="css/style-desktop.css" />
+	<link rel="stylesheet" type="text/css" href="css/magnifier.css">
 </noscript>
 <link rel="icon" type="image/ico" href="images/saj-icon.ico"></link>
 
@@ -32,7 +36,10 @@
 <body ng-app="sajApp">
 
 	<script>
-		(function(i, s, o, g, r, a, m) {
+		
+	//Google Analytics
+	
+	(function(i, s, o, g, r, a, m) {
 			i['GoogleAnalyticsObject'] = r;
 			i[r] = i[r] || function() {
 				(i[r].q = i[r].q || []).push(arguments)
@@ -46,30 +53,31 @@
 
 		ga('create', 'UA-61247237-1', 'auto');
 		ga('send', 'pageview');
+		
+		//Initialize Image Magnifier		
+		var evt = new Event(),
+	    m = new Magnifier(evt);
+
 	</script>
 
 	<script src="js/app.js"></script>
 	<script src="js/controllers.js"></script>
 
-	<header id="header" class="container">
+
+	<div id="header" class="container" ng-controller="Dresses">
 
 		<!-- Logo -->
 		<div>
 			<a href="index.html"><img src="images/company.png" width="250px"></a>
 
-				<div id="contactus" ng-controller="Cart">
-					<br/>				
-					<h3><a href="#">Check Out</a></h3>
-					{{cart.items.length}} items - ${{cart.totalPrice}} 
-					
-				</div>
-			<!-- 
-				<div id="contactus">				
-					<h3>Contact Us</h3>
-					19027 B St <br /> Omaha, NE 68130<br /> <a href="tel:+14025770055">402-577-0055</a><br />
-					<a href="mailto:sowjanya.datla@gmail.com">sowjanya.datla@gmail.com</a>
-				</div>
-			 -->
+			<div id="contactus">
+				<br />
+				<h3>
+					<a href="#">Check Out</a>
+				</h3>
+				{{cart.items.length}} items - ${{cart.totalPrice}}
+
+			</div>
 		</div>
 		<div class="3u">
 			<!-- Nav -->
@@ -80,10 +88,10 @@
 					<a href="tel:+14025770055">402-577-0055</a><br /> <a href="mailto:sowjanya.datla@gmail.com">sowjanya.datla@gmail.com</a>
 				</div>
 
-				
-				
-				
-				
+
+
+
+
 
 				<div id="tabs" ng-init="type='$JW'">
 					<input id="tab-1" type="radio" value="$JW" name="tab-group" ng-model="type" ng-checked="true" /> <label for="tab-1">Jewelry</label> <input id="tab-6" type="radio" value="$KU" name="tab-group" ng-model="type" /> <label for="tab-6">Kurthis</label> <input id="tab-2" type="radio" value="$SK"
@@ -100,8 +108,6 @@
 
 		</div>
 
-
-
 		<div id="mobileTabs">
 			<label for="selType">Model:</label> <select ng-model="type" id="selType">
 				<option value="$JW" selected="selected">Jewelry</option>
@@ -113,48 +119,108 @@
 
 			</select>
 		</div>
-	</header>
+		</header>
+		<br /> <br />
+
+		<!-- Features -->
+		<div id="features-wrapper">
+			<div class="container">
+				<div class="row">
+					<div class="2u" ng-repeat="dress in dresses | filter:type">
+						<section class="box feature">
+
+							<div style="line-height: 1.0; overflow: hidden">
+								<a href="#openModal" class="image featured" ng-click="setCurrentItem(dress)"> <img bn-lazy-src="https://googledrive.com/host/0B2yfPSrBHXFFfkxxUEplYlVsYWVoMlVQMGJPNnJ1NFlKeXV5Zmg5QUdrR2pNU2RLQms0dmM/{{dress.id}}.jpg" alt="Sanskrithi" />
 
 
-	<br/><br/>
+									<div class="box feature inner">
+										<font class="dressDesc">{{dress.name}}</font><br />
+										<div ng-if="dress.discount == 0">
+											<font class="price">${{dress.finalPrice}}</font><br />
+										</div>
+										<div ng-if="dress.discount != 0">
+											<font class="oldPrice" style="line-height: 1.0">${{dress.price}}</font><font class="salePrice">&nbsp;&nbsp;&nbsp;${{dress.finalPrice}}</font><br />
+										</div>
 
-	<!-- Features -->
-	<div id="features-wrapper">
-
-
-		<div class="container">
-
-			<div class="row" ng-controller="Dresses">
-
-
-				<div class="2u" ng-repeat="dress in dresses | filter:type">
-
-
-					<section class="box feature">
-
-						<div style="line-height: 1.0; overflow:hidden">
-							<a href="#" class="image featured"> <img bn-lazy-src="https://googledrive.com/host/0B2yfPSrBHXFFfkxxUEplYlVsYWVoMlVQMGJPNnJ1NFlKeXV5Zmg5QUdrR2pNU2RLQms0dmM/{{dress.id}}.jpg" alt="Sanskrithi" />
-							</a>
-
-							<div class="box feature inner">
-								<font class="dressDesc">{{dress.name}}</font><br /> <font class="salePrice">${{dress.price}}</font><br /> 
-								<a href="#" class="btn" ng-controller ="Cart" ng-click="addCart($parent.dress.name, 1)">Add to Bag</a>
-								
-								
+										<a href="#openModal" class="btn" ng-click="setCurrentItem(dress)">Add to Bag</a>
+									</div>
+								</a>
 							</div>
-							
-							
-						</div>
+						</section>
+					</div>
+				</div>
+			</div>
+
+			<div id="openModal" class="modalDialog">
+				<div>
+					<a href="#close" title="Close" class="close">X</a>
+
+					<table>
+
+						<tr>
+							<td style="padding: 10px;"><img class="productImgModel" src="https://googledrive.com/host/0B2yfPSrBHXFFfkxxUEplYlVsYWVoMlVQMGJPNnJ1NFlKeXV5Zmg5QUdrR2pNU2RLQms0dmM/{{currentItem.id}}.jpg" /></td>
+							<td style="vertical-align: top; padding: 10px">
+
+								<div>
+									<font class="dressDescModel">{{currentItem.name}}, ${{currentItem.finalPrice}}</font> <br /> <font class="productSizeModel">Size: {{currentItem.size}}&nbsp;{{currentItem.sizeDesc}}</font> <br />
+									<br /> <br /> <br />
+								</div>
+
+								<div ng-if="currentItem.discount == 0">
+									<font class="priceModel">Price: ${{currentItem.finalPrice}}</font>
+								</div> <br />
 
 
-					</section>
+								<div ng-if="currentItem.discount != 0">
+									<font class="priceModel">Orig Price: ${{currentItem.price}}</font><br /> <font class="priceModel">Discount: {{currentItem.discount}}%</font><br /> <font class="salePriceModel">New Price: ${{currentItem.finalPrice}}</font><br />
+								</div>
 
+								<div>
+
+									<br /> <br /> <br /> <a href="#openModal" class="btn" ng-click="addToCart(currentItem)">Add to Bag</a>
+								</div>
+
+
+							</td>
+						</tr>
+
+					</table>
 
 				</div>
+			</div>
 
-			</div>;
+
 		</div>
-	</div>
+
+
+<table>
+
+			<tr>
+				<td>
+
+<div>
+    <a class="magnifier-thumb-wrapper" href="http://en.wikipedia.org/wiki/File:Starry_Night_Over_the_Rhone.jpg">
+        <img id="thumb" src="http://upload.wikimedia.org/wikipedia/commons/thumb/9/94/Starry_Night_Over_the_Rhone.jpg/200px-Starry_Night_Over_the_Rhone.jpg">
+    </a>
+    <div class="magnifier-preview" id="preview" style="width: 200px; height: 133px">Starry Night Over The Rhone<br>by Vincent van Gogh</div>
+</div>
+
+
+				</td>
+			</tr>
+
+		</table>
+
+
+<script>
+
+m.attach({
+    thumb: '#thumb',
+    large: 'http://upload.wikimedia.org/wikipedia/commons/thumb/9/94/Starry_Night_Over_the_Rhone.jpg/400px-Starry_Night_Over_the_Rhone.jpg',
+    largeWrapper: 'preview'
+});
+
+</script>
 
 
 </body>
