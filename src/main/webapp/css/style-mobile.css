@@ -46,35 +46,7 @@ section.last, article.last {
 	margin-bottom: 2em !important;
 }
 
-/* List */
-ul {
-	
-}
 
-ul.menu {
-	
-}
-
-ul.menu li {
-	display: block;
-	border: 0 !important;
-	padding: 0 !important;
-	margin: 0 !important;
-}
-
-ul.actions {
-	
-}
-
-ul.actions li {
-	display: block;
-	padding: 0;
-	margin: 1em 0 0 0;
-}
-
-ul.actions li:first-child {
-	margin-top: 0;
-}
 
 /* Button */
 input[type="button"], input[type="submit"], input[type="reset"], .button
@@ -121,34 +93,6 @@ input[type="button"], input[type="submit"], input[type="reset"], .button
 .box.feature .image img {
 	border-bottom-left-radius: 0;
 	border-bottom-right-radius: 0;
-}
-
-/*********************************************************************************/
-/* Widgets                                                                       */
-/*********************************************************************************/
-.widget {
-	
-}
-
-.widget.thumbnails {
-	
-}
-
-.widget.thumbnails .image {
-	margin: 0;
-}
-
-.widget.thumbnails .x {
-	padding: 1em 0.5em 0 0;
-}
-
-.widget.thumbnails .y {
-	padding: 1em 0 0 0.5em;
-}
-
-.widget.thumbnails .row:first-child .x, .widget.thumbnails .row:first-child .y
-	{
-	padding-top: 0;
 }
 
 /*********************************************************************************/
@@ -243,28 +187,6 @@ input[type="button"], input[type="submit"], input[type="reset"], .button
 	font-weight: 800;
 }
 
-/*********************************************************************************/
-/* Wrappers                                                                      */
-/*********************************************************************************/
-#header-wrapper {
-	padding: 44px 0 0px 0;
-}
-
-#banner-wrapper {
-	padding: 0 15px 0 15px;
-}
-
-#features-wrapper {
-	padding: 0 15px 40px 15px;
-}
-
-#main-wrapper {
-	padding: 40px 30px 40px 30px;
-}
-
-#footer-wrapper {
-	padding: 40px 30px 40px 30px;
-}
 
 /*********************************************************************************/
 /* Logo                                                                          */
@@ -295,31 +217,6 @@ input[type="button"], input[type="submit"], input[type="reset"], .button
 	display: none;
 }
 
-/*********************************************************************************/
-/* Banner                                                                        */
-/*********************************************************************************/
-#banner {
-	text-align: center;
-}
-
-#banner h2 {
-	font-size: 2em;
-	margin: 0.75em 0 0.5em 0;
-}
-
-#banner p {
-	font-size: 1.5em;
-	line-height: 1.5em;
-	margin: 0;
-}
-
-#banner ul {
-	margin: 0;
-}
-
-#banner .button {
-	margin: 1em 0 0 0;
-}
 
 /*********************************************************************************/
 /* Content                                                                       */
@@ -342,32 +239,9 @@ input[type="button"], input[type="submit"], input[type="reset"], .button
 	margin-bottom: 0 !important;
 }
 
-/*********************************************************************************/
-/* Footer                                                                        */
-/*********************************************************************************/
-#footer {
-	
-}
 
-#footer section {
-	border-bottom: solid 1px #ccc;
-	padding-bottom: 2em;
-	margin-bottom: 2em !important;
-}
 
-#footer section.last {
-	padding-bottom: 0;
-	border-bottom: 0;
-	margin-bottom: 0 !important;
-}
-
-#copyright {
-	padding: 2em 0 0 0;
-	border-top: solid 1px #ccc;
-	margin: 4em 0 0 0;
-}
-
-/************************ Dress Details *******************************/
+/************************ ProductDetails - Products Display Page *******************************/
 .salePrice {
 	color: #FF0000;
 	float: left;
@@ -384,10 +258,26 @@ input[type="button"], input[type="submit"], input[type="reset"], .button
 	font-weight: bold;
 }
 
-/***********************Navigation **********************************/
-#notices {
-	display: none;
+/************************* Product Details - Model Window Pop UP******************************************/
+
+.salePriceModel {
+	color: #FF0000;
+	float: left;
+	font-family: Verdana;
+	font-size: 0.65em;
+	font-weight: bold;
+	line-height: 1em;
 }
+
+.dressDescModel {
+	color: black;
+	float: left;
+	font-family: 'Sterling Display 3r', 'Sterling Display A', 'Sterling Display B', serif;
+	font-size: 2.00em;
+	font-weight: 300;
+}
+
+/***********************Navigation **********************************/
 
 #nav tabs {
 	display: none;

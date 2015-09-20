@@ -2,21 +2,18 @@ package saj.domain;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
 
 @Entity
-@Table(name = "dress")
-public class Dress {
+@Table(name = "product")
+public class Product {
 
 	@Id
-	@Column(name = "id", length = 12)
+	@Column(name = "product_id", length = 12)
 	private String id;
 
-	@Column(name = "sort_order", length = 10)
-	private long orderID;
+
 
 	@Column(name = "type", length = 4)
 	private String type;
@@ -27,11 +24,21 @@ public class Dress {
 	@Column(name = "descrip", length = 40)
 	private String desc;
 
+	@Column(name = "size", length = 06)
+	private String size;
+	
+	@Column(name = "size_desc", length = 20)
+	private String sizeDesc;
+
 	@Column(name = "price")
 	private double price;
 
 	@Column(name = "discount")
 	private int discount;
+	
+	
+	
+	private double finalPrice = 0.00;
 
 	public String getId() {
 		return id;
@@ -42,14 +49,6 @@ public class Dress {
 	}
 
 	
-	public long getOrderID() {
-		return orderID;
-	}
-
-	public void setOrderID(long orderID) {
-		this.orderID = orderID;
-	}
-
 	public String getType() {
 		return type;
 	}
@@ -90,6 +89,34 @@ public class Dress {
 		this.discount = discount;
 	}
 
-	
+	/**
+	 * @return the finalPrice
+	 */
+	public double getFinalPrice() {
+		return finalPrice;
+	}
 
+	/**
+	 * @param finalPrice the finalPrice to set
+	 */
+	public void setFinalPrice(double finalPrice) {
+		this.finalPrice = Math.round(finalPrice *100)/100.00;
+	}
+
+	public String getSize() {
+		return size;
+	}
+
+	public void setSize(String size) {
+		this.size = size;
+	}
+
+	public String getSizeDesc() {
+		return sizeDesc;
+	}
+
+	public void setDescSize(String sizeDesc) {
+		this.sizeDesc = sizeDesc;
+	}
+	
 }

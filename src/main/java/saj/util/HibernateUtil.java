@@ -5,7 +5,7 @@ import org.hibernate.cfg.Configuration;
 import org.hibernate.service.ServiceRegistry;
 import org.hibernate.service.ServiceRegistryBuilder;
 
-import saj.domain.Dress;
+import saj.domain.Product;
   
 public class HibernateUtil {
   
@@ -15,7 +15,7 @@ public class HibernateUtil {
         if (sessionFactory == null) {
             
         	Configuration configuration = new Configuration().configure("hibernate.cfg.xml");
-        	configuration.addAnnotatedClass(Dress.class);
+        	configuration.addAnnotatedClass(Product.class);
             ServiceRegistryBuilder registry = new ServiceRegistryBuilder();
             registry.applySettings(configuration.getProperties());
             ServiceRegistry serviceRegistry = registry.buildServiceRegistry();

@@ -7,19 +7,19 @@ import javax.ws.rs.Path;
 import javax.ws.rs.Produces;
 import javax.ws.rs.core.MediaType;
 
-import saj.domain.Dress;
-import saj.service.DressService;
+import saj.domain.Product;
+import saj.service.ProductService;
 
 
-@Path("/dress")
-public class DressRestService {
+@Path("/product")
+public class ProductRestService {
 
     @GET
     @Produces(MediaType.APPLICATION_JSON)
-    public List<Dress> get () {
-        DressService dressService = new DressService();
+    public List<Product> get () {
+        ProductService productService = new ProductService();
         try {
-			return dressService.getAllDresses();
+			return productService.getAllProducts();
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();

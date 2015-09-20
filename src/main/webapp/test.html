@@ -5,18 +5,48 @@
 <head>
 
 <script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.2.27/angular.js"></script>
+<script type="text/javascript" src="js/magnifier/Event.js"></script>
+<script type="text/javascript" src="js/magnifier/Magnifier.js"></script>
 
-	<link rel="stylesheet" href="css/skel.css" />
+<link rel="stylesheet" type="text/css" href="css/magnifier.css">
 	
 
 
 </head>
 
 <body>
-<table border="1"><TR><td width="100%">
-sdfsdfs</td></TR></table>
 
+<script>
+//Initialize Image Magnifier		
+var evt = new Event(),
+m = new Magnifier(evt);
 
+</script>
+		<table>
+			<tr>
+				<td>
+				    <a class="magnifier-thumb-wrapper" href="https://googledrive.com/host/0B2yfPSrBHXFFfkxxUEplYlVsYWVoMlVQMGJPNnJ1NFlKeXV5Zmg5QUdrR2pNU2RLQms0dmM/20150201-k34.jpg">
+				        <img style="max-width:300px" id="thumb" src="https://googledrive.com/host/0B2yfPSrBHXFFfkxxUEplYlVsYWVoMlVQMGJPNnJ1NFlKeXV5Zmg5QUdrR2pNU2RLQms0dmM/20150201-k34.jpg"
+				        data-large-img-url="https://googledrive.com/host/0B2yfPSrBHXFFfkxxUEplYlVsYWVoMlVQMGJPNnJ1NFlKeXV5Zmg5QUdrR2pNU2RLQms0dmM/20150201-k34.jpg"
+				        data-large-img-wrapper="preview">
+				
+				    </a>
+				</td>
+				
+				<td><div class="magnifier-preview" id="preview" style="width: 300px;height:450px">Starry Night Over The Rhone<br>by Vincent van Gogh</div></td>
+			</tr>
+		</table>
+
+<script>
+
+m.attach({
+    thumb: '#thumb',
+    large: 'https://googledrive.com/host/0B2yfPSrBHXFFfkxxUEplYlVsYWVoMlVQMGJPNnJ1NFlKeXV5Zmg5QUdrR2pNU2RLQms0dmM/20150201-k34.jpg',
+    largeWrapper: 'preview',
+    zoom: 3
+});
+
+</script>
 
 </body>
 </html>

@@ -7,9 +7,7 @@
 /*********************************************************************************/
 /* Basic                                                                         */
 /*********************************************************************************/
-body {
-	line-height: 2.25em;
-}
+
 
 h2 {
 	font-size: 2.25em;
@@ -55,43 +53,6 @@ h3 {
 	border-bottom-right-radius: 0;
 }
 
-/*********************************************************************************/
-/* Widgets                                                                       */
-/*********************************************************************************/
-.widget {
-	
-}
-
-.widget.thumbnails {
-	
-}
-
-.widget.thumbnails .grid {
-	margin: 0 0 3em 0;
-}
-
-.widget.thumbnails .image {
-	margin: 0;
-}
-
-/*********************************************************************************/
-/* Wrappers                                                                      */
-/*********************************************************************************/
-#header-wrapper {
-	padding: 0em 0 0em 0;
-}
-
-#features-wrapper {
-	padding: 0em 0 0em 0;
-}
-
-#main-wrapper {
-	padding: 0em 0 0em 0;
-}
-
-#footer-wrapper {
-	padding: 0em 0 0em 0;
-}
 
 /*********************************************************************************/
 /* Logo                                                                          */
@@ -114,18 +75,9 @@ h3 {
 	font-size: 0.9em;
 }
 
-#notices{
-	font-family: Verdana;
-	font-size: 0.70em;
-	font-weight: bold;
-	list-style-type:disc;
-	line-height: 1.5em;
-}
-
 
 
 #contactus {
-	position: absolute;
 	right: 0;
 	top: 0;
 	font-size: 0.80em;
@@ -255,45 +207,26 @@ h3 {
 	z-index: 1;
 }
 
-/*********************************************************************************/
-/* Banner                                                                        */
-/*********************************************************************************/
-#banner {
-	padding: 4.5em;
+
+
+/************************ ProductDetails - Products Display Page *******************************/
+
+.dressDesc {
+	color: black;
+	float: left;
+	font-family: Verdana;
+	font-size: 0.65em;
+	font-weight: bold;
 }
 
-#banner h2 {
-	font-size: 3.5em;
-	margin: 0.1em 0 0.35em 0;
+/* Price Label */
+.price {
+	color: black;
+	float: left;
+	font-family: Verdana;
+	font-size: 0.65em;
+	font-weight: bold;
 }
-
-#banner p {
-	font-size: 2.75em;
-	line-height: 1.35em;
-	margin: 0;
-}
-
-#banner .button {
-	width: 100%;
-	margin-bottom: 0.5em;
-}
-
-#banner .button.icon:before {
-	position: absolute;
-	right: 0.15em;
-	top: 50%;
-	margin-top: -0.5em;
-}
-
-#banner .button.alt {
-	margin-bottom: 0;
-}
-
-#banner ul {
-	margin: 0 0 0 2em;
-}
-
-/************************* Box Details ******************************************/
 
 .salePrice {
 	color: #FF0000;
@@ -303,12 +236,58 @@ h3 {
 	font-weight: bold;
 }
 
-.dressDesc {
+.oldPrice {
 	color: black;
 	float: left;
 	font-family: Verdana;
 	font-size: 0.65em;
 	font-weight: bold;
+	text-decoration: line-through;
+	
+}
+
+/************************* Product Details - Model Window Pop UP******************************************/
+
+.dressDescModel {
+	color: black;
+	font-family: 'Sterling Display 3r', 'Sterling Display A', 'Sterling Display B', serif;
+	font-size: 1.5em;
+	font-weight: 300;
+	line-height: 2em;
+}
+
+.productSizeModel{
+	color: black;
+	font-family: Verdana;
+	font-size: 0.85em;
+	font-weight: bold;
+	line-height: 1em;
+}
+
+.priceModel {
+	color: black;
+	font-family: Verdana;
+	font-size: 0.65em;
+	font-weight: bold;
+	line-height: 1em;
+}
+
+
+.salePriceModel {
+	color: #FF0000;
+	font-family: Verdana;
+	font-size: 0.65em;
+	font-weight: bold;
+	line-height: 1em;
+}
+
+.oldPriceModel {
+	color: black;
+	font-family: Verdana;
+	font-size: 0.65em;
+	font-weight: bold;
+	text-decoration: line-through;
+	line-height: 1em;
 }
 
 

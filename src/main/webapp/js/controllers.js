@@ -21,14 +21,121 @@ app.controller("LoginController", function($scope, $rootScope, AUTH_EVENTS,
 
 
 
-app.controller("Dresses", ['$scope','$http','$cookies', function($scope, $http, $cookies) {
+app.controller("Products", ['$scope','$http','$cookies', function($scope, $http, $cookies) {
 
+	// Initialise Cart
+	
+	// Check for cookies
+	var cart ;
+		
+	try{
+		cart = $cookies.getObject('myCart');
+	}catch(e){
+		// No cookie found
+
+	}
+
+	if (cart == undefined){
+		
+		cart = {};  
+		cart.items = [];
+		cart.totalPrice = 0.00;
+		
+	}
+	
+	
+	// Set cart as scope variable, to be accessible to the view
+	$scope.cart = cart;
+	
+	
 	// Get all items
 	/*For localhost use /saj/rest/dress*/
-	$http.get('/saj/rest/dress').success(function(data) {
-		$scope.dresses = data;
+	$http.get('/saj/rest/product').success(function(data) {
+		$scope.products = data;
 			
 	})
+
+
+	$scope.setCurrentItem= function(item){
+		
+		$scope.currentItem = item;
+		
+		var imageSource = 'https://googledrive.com/host/0B2yfPSrBHXFFfkxxUEplYlVsYWVoMlVQMGJPNnJ1NFlKeXV5Zmg5QUdrR2pNU2RLQms0dmM/'+ item.id + '.jpg'; 
+		
+		document.getElementById("thumb").src = imageSource;
+		document.getElementById("thumb").setAttribute('data-large-img-url',imageSource);
+		
+		var evt = new Event();
+		$scope.m = new Magnifier(evt);
+	
+		
+		$scope.m.attach({
+		    thumb: '#thumb',
+		    large: 'https://googledrive.com/host/0B2yfPSrBHXFFfkxxUEplYlVsYWVoMlVQMGJPNnJ1NFlKeXV5Zmg5QUdrR2pNU2RLQms0dmM/'+ item.id + '.jpg',
+		    largeWrapper: 'preview',
+		    zoom: 3
+		});
+		
+		
+		document.getElementById("thumb").className = '';
+		
+		if(document.getElementById("thumb-large") != null)
+			document.getElementById("thumb-large").className = 'hidden';
+		
+		document.getElementById("thumb-lens").style.left='0px'
+		document.getElementById("thumb-lens").style.top='0px'
+				
+		document.getElementById("btnCheckOut").style.visibility = 'hidden';
+		document.getElementById("btnContShopin").style.visibility = 'hidden';
+		document.getElementById("addedToCart").style.visibility = 'hidden';
+		document.getElementById("btnAddToCart").style.visibility = 'visible';		
+		
+		
+        
+        
+	}
+	
+	
+	$scope.addToCart = function(item){
+		
+		
+		var cart;
+		
+		try{
+			cart = $cookies.getObject('myCart');
+		}catch(e){
+			
+			alert(e);
+		}
+		
+		
+		if(cart == undefined){
+			cart = {};  
+			cart.totalPrice = 0.00;
+		}
+		if(cart.items == undefined){
+			cart.items = [];
+		}
+		
+		cart.totalPrice = cart.totalPrice + item.finalPrice;
+		cart.totalPrice = Math.round(cart.totalPrice * 100)/100
+		cart.items.push(item);
+		
+		var expireDate = new Date();
+		expireDate.setDate(expireDate.getDate() + 10);
+		$cookies.putObject('myCart', cart);
+		$scope.cart = cart;
+		
+		//Display the CheckOut and Continue Shopping Buttons
+		document.getElementById("btnAddToCart").style.visibility = 'hidden';
+		document.getElementById("btnCheckOut").style.visibility = 'visible';
+		document.getElementById("btnContShopin").style.visibility = 'visible';
+		document.getElementById("addedToCart").style.visibility = 'visible';
+
+//		return cart; 
+
+	}
+	
 	
 	
 	
@@ -38,69 +145,18 @@ app.controller("Dresses", ['$scope','$http','$cookies', function($scope, $http, 
 app.controller("Cart", ['$scope','$http','$cookies', function($scope, $http, $cookies) {
 
 					
+	$scope.checkout = function(){
 		
-		
+		document.getElementById("header").style.visibility = 'hidden';
+		document.getElementById("shopping-cart").style.visibility = 'visible';
+	}	
 	
-			
-		var cart = $cookies['myCart'];
-		if (cart != undefined && cart.items != undefined){
-			alert('Get Cart:' + cart.items[0].name);
-		}
 		
-		if(cart == undefined){
-			cart = {};  
-		}
-		
-		if(cart.items == undefined){
-			cart.items = [];
-		}
-			
-		
-		cart.totalPrice = 0.00;
-		var i = 0;
-		
-		for (; i < cart.items.length; i++) { 
-		  
-			cart.totalPrice = cart.totalPrice + cart.items[i];
-		}
-			
-		alert("Items:" + cart.items.length )
-		$scope.cart = cart;
-		
-		$scope.$apply();
-		
-		$scope.addCart = function(productId, quantity){
-			
-			var item = {};
-			item.productId = productId;
-			item.quantity = quantity;
-			
-			var cart = $cookies['myCart'];
-			
-			if (cart != undefined && cart.items != undefined){
-				alert('Add Cart1:' + cart.items.length);
-			}
-			
-			if(cart == undefined){
-				cart = {};  
-			}
-			
-			if(cart.items == undefined){
-				cart.items = [];
-			}
-			
-			cart.items.push(item);
-			
-			$cookies['myCart'] =  cart;
-			
-			$scope.cart = cart;
-			
-			
-			return cart; 
-
-		}
 		
 }]);
+
+
+
 
 // I lazily load the images, when they come into view.
 app
