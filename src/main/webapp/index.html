@@ -20,7 +20,7 @@
 <script src="lib/angular/angular-cookies.js"></script>
 <script type="text/javascript" src="js/magnifier/Event.js"></script>
 <script type="text/javascript" src="js/magnifier/Magnifier.js"></script>
-<script src="cart.js"></script>
+<script src="js/cart.js"></script>
 
 
 <link rel="stylesheet" href="css/skel.css" />
@@ -30,36 +30,37 @@
 <link rel="stylesheet" href="css/magnifier.css">
 <link rel="stylesheet" href="css/header/demo.css">
 <link rel="stylesheet" href="css/header/header-fixed.css">
-<link href='http://fonts.googleapis.com/css?family=Cookie' rel='stylesheet' type='text/css'>
+<link href="http://fonts.googleapis.com/css?family=Cookie" rel="stylesheet" type="text/css">
 
 </head>
 
-<!--[if lte IE 8]><link rel="stylesheet" href="css/ie/v8.css" /><![endif]-->
-<body ng-app="sajApp">
 
-<header class="header-fixed">
+<body ng-app="sajApp" ng-controller="Products">
 
-	<div class="header-limiter">
+	<header class="header-fixed">
 
-		<h1><a href="#">Sanskrithi Jewelry</a></h1>
+		<div class="header-limiter">
 
-		<nav>
-			<a href="./">Home</a>
-			<a href="#" style="text-align:center"onclick="window.open( 'https://www.facebook.com/sanskrithiweb', 'saj_facebook' )" ><div style="background-color:#3D579D; width:auto;padding-left:4px;padding-right:4px;padding-top:1px;padding-bottom:1px;margin:0px">facebook</div></a>
-			
-			
-			<a href="#" >Login</a>
-			
-			
-			<a href="#" style="text-align:center"onclick="window.open( 'https://www.facebook.com/sanskrithiweb', 'saj_facebook' )" ><div style="background-color:#3a3c3e; width:auto;padding-left:4px;padding-right:4px;padding-top:1px;padding-bottom:1px;margin:0px">Sign Up</div></a>
+			<h1>
+				<a href="#">Sanskrithi Jewelry</a>
+			</h1>
 
-			
-		</nav>
-	</div>
+			<nav>
+				<a href="./">Home</a> <a href="#" style="text-align: center" onclick="window.open( 'https://www.facebook.com/sanskrithiweb', 'saj_facebook' )"><div style="background-color: #3D579D; width: auto; padding-left: 4px; padding-right: 4px; padding-top: 1px; padding-bottom: 1px; margin: 0px">facebook</div></a> <a href="#">Login</a> <a href="#" style="text-align: center" onclick="window.open( 'https://www.facebook.com/sanskrithiweb', 'saj_facebook' )"><div style="background-color: #3a3c3e; width: auto; padding-left: 4px; padding-right: 4px; padding-top: 1px; padding-bottom: 1px; margin: 0px">Sign Up</div></a> <a href="#"  ng-click="checkout()">
+					<div style="position: relative; padding-top: 8px; padding-right: 10px">
+						<div style="border-radius: 50%; background: red; position: absolute; float: right; width: 25px; height: 25px; right: 0px; top: 0px">{{cart.items.length}}</div>
+						<div  style="width: auto; padding-left: 4px; padding-right: 4px; padding-top: 1px; padding-bottom: 0px; margin: 0px; positon: absolute">
+							Cart&nbsp;<img src="./images/cart.png" style="margin: 0px; padding: 0px; padding-bottom: 1px; vertical-align: bottom;" />
+						</div>
+					</div>
+				</a>
 
-</header>
+			</nav>
+		</div>
 
-<div class="header-fixed-placeholder"></div>
+	</header>
+
+	<div class="header-fixed-placeholder"></div>
 
 	<script>
 		//Google Analytics
@@ -78,7 +79,6 @@
 
 		ga('create', 'UA-61247237-1', 'auto');
 		ga('send', 'pageview');
-
 	</script>
 
 	<script src="js/app.js"></script>
@@ -94,37 +94,14 @@
 
 
 
-	<table ng-controller="Products" style="border-spacing: 5px;">
-	
-	<!-- 
-		<tr>
-			<td>
-				<table cellpadding="4px" cellspacing="4px">
-					<tr>
-						<td><a href="index.html"><img src="images/company.png" width="250px" /></a></td>
-
-						<td id="contactus">
-
-							<h3>
-								<a href="#" ng-controller="Cart" ng-click="checkout()">Check Out</a>
-							</h3> 
-							
-							{{cart.items.length}} items - ${{cart.totalPrice}}
-							
-						</td>
-					</tr>
-				</table>
-			</td>
-		</tr>
-		 -->
-		
+	<table style="border-spacing: 5px;">
 		<tr>
 			<td>
 
 				<div id="header" class="container" style="position: absolute">
 
 					<div id="tabs" style="float: left" ng-init="type='$JW'">
-						<input id="tab-1" type="radio" value="$JW" name="tab-group" ng-model="type" ng-checked="true" /> <label for="tab-1">Jewelry</label> <input id="tab-6" type="radio" value="$KU" name="tab-group" ng-model="type" /> <label for="tab-6">Kurthis</label>  <input id="tab-3" type="radio" value="$SE" name="tab-group" ng-model="type" /> <label for="tab-3">Sets</label> <input id="tab-4" type="radio" value="$BL" name="tab-group" ng-model="type" /> <label for="tab-4">Blouses</label> 
+						<input id="tab-1" type="radio" value="$JW" name="tab-group" ng-model="type" ng-checked="true" /> <label for="tab-1">Jewelry</label> <input id="tab-6" type="radio" value="$KU" name="tab-group" ng-model="type" /> <label for="tab-6">Kurthis</label> <input id="tab-3" type="radio" value="$SE" name="tab-group" ng-model="type" /> <label for="tab-3">Sets</label> <input id="tab-4" type="radio" value="$BL" name="tab-group" ng-model="type" /> <label for="tab-4">Blouses</label>
 					</div>
 
 					<div id="mobileTabs">
@@ -149,7 +126,7 @@
 									<section class="box feature">
 
 										<div style="line-height: 1.0; overflow: hidden">
-											<a href="#openModal" class="image featured" ng-click="setCurrentItem(product)"> <img bn-lazy-src="https://googledrive.com/host/0B2yfPSrBHXFFfkxxUEplYlVsYWVoMlVQMGJPNnJ1NFlKeXV5Zmg5QUdrR2pNU2RLQms0dmM/{{product.id}}.jpg" alt="Sanskrithi" />
+											<a href="#openModal" class="image featured" ng-click="setViewProduct(product)"> <img bn-lazy-src="https://googledrive.com/host/0B2yfPSrBHXFFfkxxUEplYlVsYWVoMlVQMGJPNnJ1NFlKeXV5Zmg5QUdrR2pNU2RLQms0dmM/{{product.id}}.jpg" alt="Sanskrithi" />
 
 
 												<div class="box feature inner">
@@ -161,7 +138,7 @@
 														<font class="oldPrice" style="line-height: 1.0">${{product.price}}</font><font class="salePrice">&nbsp;&nbsp;&nbsp;${{product.finalPrice}}</font><br />
 													</div>
 
-													<a href="#openModal" class="btn" ng-click="setCurrentItem(product)">Add to Bag</a>
+													<a href="#openModal" class="btn" ng-click="setviewProduct(product)">Add to Bag</a>
 												</div>
 											</a>
 										</div>
@@ -193,27 +170,31 @@
 												<img src="images/tick.png" style="width: 0.9em" /><font>&nbsp;&nbsp;&nbsp;&nbsp;Item added to cart</font><br />
 											</div>
 
-											<any ng-if="currentItem.discount == 0"> <font class="dressDescModel">{{currentItem.name}}, ${{currentItem.finalPrice}}</font> <br />
+											<any ng-if="viewProduct.discount == 0"> <font class="dressDescModel">{{viewProduct.name}}, ${{viewProduct.finalPrice}}</font> <br />
 											<br />
-											<font class="productSizeModel">Size: {{currentItem.size}}&nbsp;{{currentItem.sizeDesc}}</font> <br />
+											<font class="productSizeModel">{{viewProduct.desc}}</font> <br />
 											<br />
-											<font class="priceModel">Price: ${{currentItem.finalPrice}}</font> <br />
+											<font class="productSizeModel">Size: {{viewProduct.size}}&nbsp;{{viewProduct.sizeDesc}}</font> <br />
+											<br />
+											<font class="priceModel">Price: ${{viewProduct.finalPrice}}</font> <br />
 											<br />
 											<br />
-											<a href="#openModal" class="btn" id="btnAddToCart" ng-click="addToCart(currentItem)">Add to Bag</a> <br />
+											<a href="#openModal" class="btn" id="btnAddToCart"  ng-click="addToCart(viewProduct)">Add to Bag</a> <br />
 											<a href="#" class="btn" id="btnCheckOut" style="visibility: hidden" ng-click="checkout()">Check Out</a> <a href="#" class="btn" id="btnContShopin" style="visibility: hidden" ng-click="exitModalDialog()">Continue Shopping</a> </any>
 											<br />
 
-											<any ng-if="currentItem.discount != 0"> <font class="dressDescModel">{{currentItem.name}}, ${{currentItem.finalPrice}}</font> <br />
+											<any ng-if="viewProduct.discount != 0"> <font class="dressDescModel">{{viewProduct.name}}, ${{viewProduct.finalPrice}}</font> <br />
 											<br />
-											<font class="productSizeModel">Size: {{currentItem.size}}&nbsp;{{currentItem.sizeDesc}}</font> <br />
+											<font class="productSizeModel">{{viewProduct.desc}}</font> <br />
 											<br />
-											<font class="priceModel">Orig Price: ${{currentItem.price}}</font> <br />
-											<font class="priceModel">Discount: {{currentItem.discount}}%</font> <br />
-											<font class="salePriceModel">New Price: ${{currentItem.finalPrice}}</font> <br />
+											<font class="productSizeModel">Size: {{viewProduct.size}}&nbsp;{{viewProduct.sizeDesc}}</font> <br />
 											<br />
-											<a href="#openModal" class="btn" id="btnAddToCart" ng-click="addToCart(currentItem)">Add to Bag</a> <br />
-											<a href="#" class="btn" id="btnCheckOut" style="visibility: hidden" ng-controller="Cart" ng-click="checkout()">Check Out</a> <a href="#" class="btn" id="btnContShopin" style="visibility: hidden" ng-click="exitModalDialog()">Continue Shopping</a> </any>
+											<font class="priceModel">Orig Price: ${{viewProduct.price}}</font> <br />
+											<font class="priceModel">Discount: {{viewProduct.discount}}%</font> <br />
+											<font class="salePriceModel">New Price: ${{viewProduct.finalPrice}}</font> <br />
+											<br />
+											<a href="#openModal" class="btn" id="btnAddToCart" ng-click="addToCart(viewProduct)">Add to Bag</a> <br />
+											<a href="#" class="btn" id="btnCheckOut" style="visibility: hidden" ng-click="checkout()">Check Out</a> <a href="#" class="btn" id="btnContShopin" style="visibility: hidden" ng-click="exitModalDialog()">Continue Shopping</a> </any>
 
 										</div>
 
@@ -230,7 +211,7 @@
 
 
 
-				<div id="shopping-cart" class="shopping-cart" style="visibility: hidden; position: absolute" ng-controller="Cart">
+				<div id="shopping-cart" class="shopping-cart" style="visibility: hidden; position: absolute">
 
 					<TABLE>
 						<TR class="column-labels">
@@ -241,18 +222,20 @@
 							<td class="product-line-price">Total</td>
 
 						</TR>
-						<TR class="product">
-							<td class="product-image"><img src="http://s.cdpn.io/3/dingo-dog-bones.jpg"></td>
-							<td class="product-details">
-								<p class="product-description">The best dog bones of all time. Holy crap. Your dog will be begging for these things! I got curious once and ate one myself. I'm a fan.</p>
-								<button class="remove-product">Remove</button>
-							</td>
-							<td class="product-price">12.99</td>
-							<td class="product-quantity"><input type="number" value="2" min="1"></td>
-							<td class="product-line-price">25.98</td>
-						</TR>
+						<div>
+							<TR class="product" ng-repeat="item in cart.items">
+								<td class="product-image"><img src="https://googledrive.com/host/0B2yfPSrBHXFFfkxxUEplYlVsYWVoMlVQMGJPNnJ1NFlKeXV5Zmg5QUdrR2pNU2RLQms0dmM/{{item.product.id}}.jpg"></td>
+								<td class="product-details">
+									<p class="product-description">
+										{{item.product.name}} <br /> {{item.product.desc}} <br /> Size: {{item.product.size}}, {{item.product.sizeDesc}}
+									</p>
+									<button class="remove-product" ng-click="removeFromCart(item)">Remove</button>
+								</td>
+								<td class="product-price">${{item.product.finalPrice}}</td>
+								<td class="product-quantity"><input ng-model="item.quantity" ng-change="updateItemInCart(item)" type="number" value="{{item.quantity}}" min="1" max="1"></td>
+								<td class="product-line-price">${{item.subtotal}}</td>
+							</TR>
 					</TABLE>
-
 
 
 					<div class="totals">
@@ -269,36 +252,33 @@
 			</td>
 		</tr>
 	</table>
-<script>
-// To keep the header stick to the top
-	$(document).ready(function(){
+	<script>
+		// To keep the header stick to the top
+		$(document).ready(function() {
 
-		var showHeaderAt = 150;
+			var showHeaderAt = 150;
 
-		var win = $(window),
-				body = $('body');
+			var win = $(window), body = $('body');
 
-		// Show the fixed header only on larger screen devices
+			// Show the fixed header only on larger screen devices
 
-		if(win.width() > 600){
+			if (win.width() > 600) {
 
-			// When we scroll more than 150px down, we set the
-			// "fixed" class on the body element.
+				// When we scroll more than 150px down, we set the
+				// "fixed" class on the body element.
 
-			win.on('scroll', function(e){
+				win.on('scroll', function(e) {
 
-				if(win.scrollTop() > showHeaderAt) {
-					body.addClass('fixed');
-				}
-				else {
-					body.removeClass('fixed');
-				}
-			});
+					if (win.scrollTop() > showHeaderAt) {
+						body.addClass('fixed');
+					} else {
+						body.removeClass('fixed');
+					}
+				});
 
-		}
+			}
 
-	});
-
-</script>
+		});
+	</script>
 </body>
 </html>

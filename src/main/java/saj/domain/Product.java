@@ -36,6 +36,8 @@ public class Product {
 	@Column(name = "discount")
 	private int discount;
 	
+	@Column(name = "inventory")
+	private int iventory;
 	
 	
 	private double finalPrice = 0.00;

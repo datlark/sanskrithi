@@ -1,0 +1,17 @@
+Manifest-Version: 1.0
+Bundle-ManifestVersion: 2
+Bundle-Name: sanskrithi
+Bundle-SymbolicName: sanskrithi
+Bundle-Version: 1.0.0.qualifier
+Export-Package: css,
+ css.header,
+ fonts,
+ images,
+ js,
+ js.magnifier,
+ lib.angular,
+ saj.domain,
+ saj.rest,
+ saj.service,
+ saj.util
+Require-Bundle: sanskrithi

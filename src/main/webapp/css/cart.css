@@ -1,0 +1,236 @@
+
+/* Global settings */
+ $color-border: #eee ;
+ $color-label: #aaa ;
+ $font-default: 'HelveticaNeue-Light ', 'Helvetica Neue Light ', 'Helvetica Neue
+	', Helvetica, Arial, sans-serif ;
+ $font-bold: 'HelveticaNeue-Medium ', 'Helvetica Neue Medium ';
+
+
+
+/* Column headers */
+.column-labels td {
+	font-family: 'HelveticaNeue-Medium ', 'Helvetica Neue Medium ';
+	padding-bottom: 15px;
+	margin-bottom: 15px;
+	border-bottom: 1px solid$color-border;
+}
+
+
+/* Product entries */
+.product {
+	margin-bottom: 20px;
+	padding-bottom: 10px;
+	border-bottom: 1px solid$color-border;
+}
+
+
+
+/* Global "table" column settings */ 
+.product-image {
+	vertical-align: top;	
+	width: 17%;
+}
+
+.product-details {
+	vertical-align: top;
+	width: 40%;
+	padding: 0px 30px 30px 20px;
+  	font-family: 'HelveticaNeue-Medium ', 'Helvetica Neue Medium ';
+	font-weight: 100;
+}
+
+.product-price {
+	vertical-align: top;
+	width: 12%;
+	font-family: 'HelveticaNeue-Medium ', 'Helvetica Neue Medium ';
+}
+
+.product-quantity {
+	vertical-align: top;
+	width: 10%;
+	font-family: 'HelveticaNeue-Medium ', 'Helvetica Neue Medium ';
+}
+
+.product-line-price {
+	vertical-align: top;
+	width: 12%;
+	text-align: right;
+	font-family: 'HelveticaNeue-Medium ', 'Helvetica Neue Medium ';
+}
+
+.product-image  img {
+	width: 65px;
+}
+
+.product-title {
+	margin-right: 20px;
+	font-family: 'HelveticaNeue-Medium ', 'Helvetica Neue Medium ';
+}
+
+.product-description {
+	margin: 5px 20px 5px 0;
+	line-height: 1.4em;
+	font-family: 'HelveticaNeue-Medium ', 'Helvetica Neue Medium ';
+	
+}
+
+.product-quantity input {
+	width: 40px;
+}
+
+.remove-product {
+	v-align:bottom;
+	border: 0;
+	padding: 4px 8px;
+	background-color: #c66;
+	color: #fff;
+	font-family: 'HelveticaNeue-Medium ', 'Helvetica Neue Medium ';
+	font-size: 12px;
+	border-radius: 3px;
+}
+
+.remove-product:hover {
+	background-color: #a44;
+}
+
+/* Totals section */
+.totals-item { 
+	
+	float:right;
+	clear: both;
+	width: 100%;
+	margin-bottom: 10px;
+	font-family: 'HelveticaNeue-Medium ', 'Helvetica Neue Medium '; 
+}
+
+	
+.totals-item label { float : left;
+	clear: both;
+	width: 79%;
+	text-align: right;
+	font-family: 'HelveticaNeue-Medium ', 'Helvetica Neue Medium ';
+}
+
+.totals-value {
+	float: right;
+	width: 21%;
+	text-align: right;
+	font-family: 'HelveticaNeue-Medium ', 'Helvetica Neue Medium ';
+}
+
+
+
+
+.totals-item-total {
+	font-family: 'Open Sans', sans-serif;
+}
+
+
+.checkout {
+	float: right;
+	border: 0;
+	margin-top: 20px;
+	padding: 6px 25px;
+	background-color: #6b6;
+	color: #fff;
+	font-size: 25px;
+	border-radius: 3px;
+}
+
+.checkout:hover {
+	background-color: #494;
+}
+
+/* Layout details of shopping cart */
+.shopping-cart {
+	padding: 0px 30px 30px 20px;
+	width:80%;
+}
+
+/*
+  Make adjustments for tablet 
+@media screen and (max-width: 650px) {
+	.shopping-cart {
+		margin: 0;
+		padding-top: 20px;
+		border-top: 1px solid$color-border;
+	}
+	.column-labels {
+		display: none;
+	}
+	.product-image {
+		float: right;
+		width: auto;
+		img
+		{
+		margin
+		:
+		0
+		0
+		10px
+		10px;
+	}
+}
+
+.product-details .product-image {
+	float: none;
+	margin-bottom: 10px;
+	width: auto;
+}
+
+.product-price {
+	clear: both;
+	width: 70px;
+}
+
+.product-quantity {
+	width: 100px;
+	input
+	{
+	margin-left
+	:
+	20px;
+}
+
+}
+.product-quantity:before {
+	content: 'x';
+}
+
+.product-removal {
+	width: auto;
+}
+
+.product-line-price {
+	float: right;
+	width: 70px;
+}
+
+}
+
+/* Make more adjustments for phone 
+@media screen and (max-width: 350px) {
+	.product-removal {
+		float: right;
+	}
+	.product-line-price {
+		float: right;
+		clear: left;
+		width: auto;
+		margin-top: 10px;
+	}
+	.product .product-line-price:before {
+		content: 'Item Total: $';
+	}
+	.totals { .totals-item { label { width:60%;
+		
+	}
+	.totals-value {
+		width: 40%;
+	}
+}
+}
+}
+
+*/

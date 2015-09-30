@@ -23,6 +23,8 @@ app.controller("LoginController", function($scope, $rootScope, AUTH_EVENTS,
 
 app.controller("Products", ['$scope','$http','$cookies', function($scope, $http, $cookies) {
 
+	/*********************************** Shopping Cart Functionality ******************************************/
+	
 	// Initialise Cart
 	
 	// Check for cookies
@@ -42,23 +44,197 @@ app.controller("Products", ['$scope','$http','$cookies', function($scope, $http,
 		cart.totalPrice = 0.00;
 		
 	}
+
+	var idList = "";
+	
+	// Build querystring parameter for ids in Cart
+	for (i = 0 ; i < cart.items.length; i++) { 
+
+		if(i == 0){
+			idList = cart.items[i].product.id;
+			
+		}else{
+			idList = idList + "," + cart.items[i].product.id;
+		}
+		
+	}
+
+	// Get List of updated list of Products for the items in the cart. This is to make sure prices are displayed upto date
+	/*For localhost use /saj/rest/dress*/
+	$http.get('/saj/rest/products?id=' + idList).success(function(data) {
+		var products = data;
+		
+		if (cart != null){
+			//loop through and update data in the Cart
+			for (i = 0 ; i < cart.items.length; i++) { 
+				for (j = 0 ; j < products.length; j++) { 
+					if (cart.items[i].product.id == products[j].id){
+						cart.items[i].product = products[j];
+						
+					}
+				}
+			}
+		
+		}
+		
+		$scope.cart = cart;	
+		
+		
+	});
 	
 	
-	// Set cart as scope variable, to be accessible to the view
-	$scope.cart = cart;
 	
+	
+	
+	// Takes a product, creates item and adds it to Cart
+	$scope.addToCart = function(product){
+		
+		
+		var cart;
+		
+		try{
+			cart = $cookies.getObject('myCart');
+		}catch(e){
+			
+			alert(e);
+		}
+		
+		
+		if(cart == undefined){
+			cart = {};  
+			cart.totalPrice = 0.00;
+		}
+		if(cart.items == undefined){
+			cart.items = [];
+		}
+		
+		var itemInCart = false;
+		
+		// Just update the quantity if the item is already added to the cart
+		for (i = 0 ; i < cart.items.length; i++) { 
+		    if (cart.items[i].product.id == product.id) {
+		    	cart.items[i].product = product;
+		    	cart.items[i].quantity = cart.items[i].quantity + 1;
+		    	cart.items[i].subtotal = cart.items[i].quantity * cart.items[i].product.finalPrice; 
+		    	itemInCart = true;
+		    	break;
+		    }
+			
+		 }
+		
+		// Add the item to the cart if it is not added yet
+		if (!itemInCart){
+			var item = {};
+			item.product = product;
+			item.quantity = 1;
+	    	item.subtotal = item.quantity * item.product.finalPrice;
+			
+			cart.items.push(item);	
+		}
+		
+		
+		var expireDate = new Date();
+		expireDate.setDate(expireDate.getDate() + 30);
+		$cookies.putObject('myCart', cart);
+		$scope.cart = cart;
+		
+		//Display the CheckOut and Continue Shopping Buttons
+		document.getElementById("btnAddToCart").style.visibility = 'hidden';
+		document.getElementById("btnCheckOut").style.visibility = 'visible';
+		document.getElementById("btnContShopin").style.visibility = 'visible';
+		document.getElementById("addedToCart").style.visibility = 'visible';
+
+//		return cart; 
+
+	}
+	
+	// THis is called when quantity is updated in the cart
+	$scope.updateItemInCart = function(item){
+		
+		
+		var cart;
+		
+		try{
+			cart = $cookies.getObject('myCart');
+		}catch(e){
+			
+		}
+		
+		// Dont do anything if the cart is somehow empty
+		if(cart == undefined || cart.items == undefined){
+			return;
+		}
+		
+		for (i = 0 ; i < cart.items.length; i++) { 
+		    if (cart.items[i].product.id == item.product.id) {
+		    	cart.item[i] = item;
+		    }
+		 }
+		
+		$cookies.putObject('myCart', cart);
+		$scope.cart = cart;
+		
+	}
+	
+	
+	
+	$scope.removeFromCart = function(item){
+		
+		
+		var cart;
+		
+		try{
+			cart = $cookies.getObject('myCart');
+		}catch(e){
+			
+		
+		}
+		
+		// Dont do anything if the cart is somehow empty
+		if(cart == undefined || cart.items == undefined){
+			return;
+		}
+		
+		for (i = 0 ; i < cart.items.length; i++) { 
+		    if (cart.items[i].product.id == item.product.id) {
+		    	cart.items.splice(i,1);
+		    	break;
+		    }
+			
+		 }
+		
+		
+		$cookies.putObject('myCart', cart);
+		$scope.cart = cart;
+		
+		
+
+	}
+	
+	
+	
+	
+	$scope.checkout = function(){
+		
+		document.getElementById("header").style.visibility = 'hidden';
+		document.getElementById("shopping-cart").style.visibility = 'visible';
+	}	
+	
+	
+	
+	/*********************************** PRoduct page Functionlity **********************************************/
 	
 	// Get all items
 	/*For localhost use /saj/rest/dress*/
-	$http.get('/saj/rest/product').success(function(data) {
+	$http.get('/saj/rest/products').success(function(data) {
 		$scope.products = data;
 			
 	})
 
 
-	$scope.setCurrentItem= function(item){
+	$scope.setViewProduct= function(item){
 		
-		$scope.currentItem = item;
+		$scope.viewProduct = item;
 		
 		var imageSource = 'https://googledrive.com/host/0B2yfPSrBHXFFfkxxUEplYlVsYWVoMlVQMGJPNnJ1NFlKeXV5Zmg5QUdrR2pNU2RLQms0dmM/'+ item.id + '.jpg'; 
 		
@@ -96,66 +272,7 @@ app.controller("Products", ['$scope','$http','$cookies', function($scope, $http,
 	}
 	
 	
-	$scope.addToCart = function(item){
-		
-		
-		var cart;
-		
-		try{
-			cart = $cookies.getObject('myCart');
-		}catch(e){
-			
-			alert(e);
-		}
-		
-		
-		if(cart == undefined){
-			cart = {};  
-			cart.totalPrice = 0.00;
-		}
-		if(cart.items == undefined){
-			cart.items = [];
-		}
-		
-		cart.totalPrice = cart.totalPrice + item.finalPrice;
-		cart.totalPrice = Math.round(cart.totalPrice * 100)/100
-		cart.items.push(item);
-		
-		var expireDate = new Date();
-		expireDate.setDate(expireDate.getDate() + 10);
-		$cookies.putObject('myCart', cart);
-		$scope.cart = cart;
-		
-		//Display the CheckOut and Continue Shopping Buttons
-		document.getElementById("btnAddToCart").style.visibility = 'hidden';
-		document.getElementById("btnCheckOut").style.visibility = 'visible';
-		document.getElementById("btnContShopin").style.visibility = 'visible';
-		document.getElementById("addedToCart").style.visibility = 'visible';
-
-//		return cart; 
-
-	}
-	
-	
-	
-	
 }]);
-
-
-app.controller("Cart", ['$scope','$http','$cookies', function($scope, $http, $cookies) {
-
-					
-	$scope.checkout = function(){
-		
-		document.getElementById("header").style.visibility = 'hidden';
-		document.getElementById("shopping-cart").style.visibility = 'visible';
-	}	
-	
-		
-		
-}]);
-
-
 
 
 // I lazily load the images, when they come into view.
