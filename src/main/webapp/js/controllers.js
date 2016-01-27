@@ -231,8 +231,27 @@ app.controller("Products", ['$scope','$http','$cookies', function($scope, $http,
 			
 	})
 
+	$scope.signup = function(){
+		
+		$http.post('/saj/rest/products').success(function(data) {
 
+			alert('hi');
+		});
+		
+		
+	}
+	
+	
+	
+	
+	$scope.login = function(){
+		alert($scope.login.email);
+		
+	}
+	
 	$scope.setViewProduct= function(item){
+		
+		// Initialize view Product Window
 		
 		$scope.viewProduct = item;
 		

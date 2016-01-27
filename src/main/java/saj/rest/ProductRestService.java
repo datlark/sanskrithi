@@ -48,30 +48,13 @@ public class ProductRestService {
   			e.printStackTrace();
   		}
   		return null;
-	   
-
 	}
-//    
-//    
-//    @GET
-//    @Produces(MediaType.APPLICATION_JSON)
-//	@Path("/product")
-//    @PathParam("{ids}")
-//
-//	public List<Product> getProducts(@PathParam("ids") List id) {
-//
-//    	ProductService productService = new ProductService();
-//        
-//    	try {
-//  			return productService.getProducts(id);
-//  		} catch (Exception e) {
-//  			// TODO Auto-generated catch block
-//  			e.printStackTrace();
-//  		}
-//  		return null;
-//	   
-//
-//	}
+
+   
+   
+
+    
+    
     
 }
 

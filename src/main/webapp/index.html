@@ -9,7 +9,7 @@
 <title>Sanskriti</title>
 <meta http-equiv="content-type" content="text/html; charset=utf-8" />
 <meta name="description" content="Indian Apparel and Jewelry" />
-<meta name="keywords" content="Desi, Indian, Apparel, Womens, Women, Kurthis, Tops, Dress, Anarkali" />
+<meta name="keywords" content="Desi, Indian, Apparel, Womens, Women, Kurthis, Tops, Dress, Anarkali, Jewelry" />
 <!--[if lte IE 8]><script src="css/ie/html5shiv.js"></script><![endif]-->
 <script src="js/jquery.min.js"></script>
 <script src="js/jquery.dropotron.min.js"></script>
@@ -46,7 +46,7 @@
 			</h1>
 
 			<nav>
-				<a href="./">Home</a> <a href="#" style="text-align: center" onclick="window.open( 'https://www.facebook.com/sanskrithiweb', 'saj_facebook' )"><div style="background-color: #3D579D; width: auto; padding-left: 4px; padding-right: 4px; padding-top: 1px; padding-bottom: 1px; margin: 0px">facebook</div></a> <a href="#">Login</a> <a href="#" style="text-align: center" onclick="window.open( 'https://www.facebook.com/sanskrithiweb', 'saj_facebook' )"><div style="background-color: #3a3c3e; width: auto; padding-left: 4px; padding-right: 4px; padding-top: 1px; padding-bottom: 1px; margin: 0px">Sign Up</div></a> <a href="#"  ng-click="checkout()">
+				<a href="./">Home</a> <a href="#" style="text-align: center" onclick="window.open( 'https://www.facebook.com/sanskrithiweb', 'saj_facebook' )"><div style="background-color: #3D579D; width: auto; padding-left: 4px; padding-right: 4px; padding-top: 1px; padding-bottom: 1px; margin: 0px">facebook</div></a> <a href="./test.html">Login</a> <a href="#" style="text-align: center" onclick="window.open( 'https://www.facebook.com/sanskrithiweb', 'saj_facebook' )"><div style="background-color: #3a3c3e; width: auto; padding-left: 4px; padding-right: 4px; padding-top: 1px; padding-bottom: 1px; margin: 0px">Sign Up</div></a> <a href="#"  ng-click="checkout()">
 					<div style="position: relative; padding-top: 8px; padding-right: 10px">
 						<div style="border-radius: 50%; background: red; position: absolute; float: right; width: 25px; height: 25px; right: 0px; top: 0px">{{cart.items.length}}</div>
 						<div  style="width: auto; padding-left: 4px; padding-right: 4px; padding-top: 1px; padding-bottom: 0px; margin: 0px; positon: absolute">
@@ -208,6 +208,26 @@
 
 				</div>
 
+			<!-- *******************  Add to Cart - Popup Window ****************************************************************************************-->
+
+					<div id="loginWindow" class="modalDialog">
+
+						<div>
+							<a href="#close" title="Close" class="close">X</a>
+
+							<table>
+
+								<tr>
+									<td style="padding: 10px;"></td>
+									<td style="vertical-align: top; padding: 10px">	</td>
+								</tr>
+
+							</table>
+
+						</div>
+					</div>
+
+				</div>
 
 
 
@@ -233,6 +253,7 @@
 								</td>
 								<td class="product-price">${{item.product.finalPrice}}</td>
 								<td class="product-quantity"><input ng-model="item.quantity" ng-change="updateItemInCart(item)" type="number" value="{{item.quantity}}" min="1" max="1"></td>
+								
 								<td class="product-line-price">${{item.subtotal}}</td>
 							</TR>
 					</TABLE>
