@@ -6,6 +6,7 @@ import org.hibernate.service.ServiceRegistry;
 import org.hibernate.service.ServiceRegistryBuilder;
 
 import saj.domain.Product;
+import saj.domain.User;
   
 public class HibernateUtil {
   
@@ -16,6 +17,7 @@ public class HibernateUtil {
             
         	Configuration configuration = new Configuration().configure("hibernate.cfg.xml");
         	configuration.addAnnotatedClass(Product.class);
+        	configuration.addAnnotatedClass(User.class);
             ServiceRegistryBuilder registry = new ServiceRegistryBuilder();
             registry.applySettings(configuration.getProperties());
             ServiceRegistry serviceRegistry = registry.buildServiceRegistry();

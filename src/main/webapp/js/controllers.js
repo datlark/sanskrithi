@@ -167,7 +167,7 @@ app.controller("Products", ['$scope','$http','$cookies', function($scope, $http,
 		
 		for (i = 0 ; i < cart.items.length; i++) { 
 		    if (cart.items[i].product.id == item.product.id) {
-		    	cart.item[i] = item;
+		    	cart.items[i] = item;
 		    }
 		 }
 		
@@ -231,23 +231,106 @@ app.controller("Products", ['$scope','$http','$cookies', function($scope, $http,
 			
 	})
 
+	
 	$scope.signup = function(){
 		
-		$http.post('/saj/rest/products').success(function(data) {
+		
+		var user = {
+                email: $scope.login.email,
+            	firstName: $scope.login.fname,
+            	lastName: $scope.login.lname,
+        		password: $scope.login.pass
+		};
+		
+		
+		$http({
+			   url : "/saj/rest/users/userreg",
+			   method : "POST",
+			   data : JSON.stringify(user),
+			   headers : {
+			        "Content-Type" : "application/json; charset=utf-8",
+			        "Accept" : "application/json"
+			   }
+			}).success(function(response,status) {
+		           if(response == 1){
+		        	   document.getElementById("signup-error").innerHTML = 'Already Exits'
+		        	   document.getElementById("signup-error").style.display = 'block';
+		        	   
+		           }else if(response == 0) {
+		        	   //TODO Change the menu Login to logout
+		         	   //TODO Store the email in cookies, so we can display account info when needed
+		        	   //TODO update the cart with user's products
+		        	   
+		        	   document.getElementById("signup-error").innerHTML = ''
+		        	   document.getElementById("signup-error").style.display = 'none';
+		        	   location.href="#close";
+		        	   
+		           }else{
+		        	   
+		        	   document.getElementById("signup-error").innerHTML = 'System Error'
+			           document.getElementById("signup-error").style.display = 'block';
+			        	   
+		           }
+		           
+		    }).error(function(data) {
+		        //TODO replace alert with better message   
+	        	   document.getElementById("signup-error").innerHTML = 'Already Exits1'
+	        	   document.getElementById("signup-error").style.visibility = 'visible';
 
-			alert('hi');
-		});
+		    });
+
 		
 		
 	}
-	
-	
 	
 	
 	$scope.login = function(){
-		alert($scope.login.email);
+		
+		var user = {
+                email: $scope.login.email,
+            	firstName: $scope.login.fname,
+            	lastName: $scope.login.lname,
+        		password: $scope.login.pass
+		};
+		
+		
+		$http({
+			   url : "/saj/rest/users/userlogin",
+			   method : "POST",
+			   data : JSON.stringify(user),
+			   headers : {
+			        "Content-Type" : "application/json; charset=utf-8",
+			        "Accept" : "application/json"
+			   }
+			}).success(function(response,status) {
+		           if(response == false){
+		       
+		        	   document.getElementById("login-error").style.display = 'block';
+		        	   
+		           }else{
+		        	   //TODO Change the menu Login to logout
+		         	   //TODO Store the email in cookies, so we can display account info when needed
+		        	   //TODO update the cart with user's products
+		        	   
+		        	   //hide error message
+		        	   document.getElementById("login-error").style.display = 'none';
+		        	   document.getElementById("menulogin").innerHTML = 'My Account';
+		        	   
+		        	   // close the window	
+		        	   location.href="#close";
+
+		        	   
+		           }
+		           
+		    }).error(function(data) {
+		        //TODO replace alert with better message   
+		    	document.getElementById("login-error").style.display = 'block';
+		    });
+		
 		
 	}
+	
+	
 	
 	$scope.setViewProduct= function(item){
 		

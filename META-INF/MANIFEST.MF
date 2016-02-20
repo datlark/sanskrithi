@@ -15,3 +15,4 @@ Export-Package: css,
  saj.service,
  saj.util
 Require-Bundle: sanskrithi
+Import-Package: saj.service

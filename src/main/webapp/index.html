@@ -23,14 +23,26 @@
 <script src="js/cart.js"></script>
 
 
+
+<!-- Main CSS links -->
 <link rel="stylesheet" href="css/skel.css" />
 <link rel="stylesheet" href="css/style.css" />
 <link rel="stylesheet" href="css/cart.css" />
 <link rel="stylesheet" href="css/style-desktop.css" />
 <link rel="stylesheet" href="css/magnifier.css">
-<link rel="stylesheet" href="css/header/demo.css">
+<link rel="stylesheet" href="css/header/header-menu.css">
 <link rel="stylesheet" href="css/header/header-fixed.css">
 <link href="http://fonts.googleapis.com/css?family=Cookie" rel="stylesheet" type="text/css">
+
+<!--Links for login -->
+<link href='http://fonts.googleapis.com/css?family=Ropa+Sans' rel='stylesheet'>
+<link href="http://maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css" rel='stylesheet'>
+
+<!-- Filters -->
+<link href='http://fonts.googleapis.com/css?family=Open+Sans:400,300,600,700' rel='stylesheet' type='text/css'>
+<link rel="stylesheet" href="css/filters/reset.css">
+<link rel="stylesheet" href="css/filters/style.css">
+
 
 </head>
 
@@ -39,48 +51,27 @@
 
 	<header class="header-fixed">
 
-		<div class="header-limiter">
+		<div class="header-limiter" ng-cloak>
 
 			<h1>
 				<a href="#">Sanskrithi Jewelry</a>
 			</h1>
 
 			<nav>
-				<a href="./">Home</a> <a href="#" style="text-align: center" onclick="window.open( 'https://www.facebook.com/sanskrithiweb', 'saj_facebook' )"><div style="background-color: #3D579D; width: auto; padding-left: 4px; padding-right: 4px; padding-top: 1px; padding-bottom: 1px; margin: 0px">facebook</div></a> <a href="./test.html">Login</a> <a href="#" style="text-align: center" onclick="window.open( 'https://www.facebook.com/sanskrithiweb', 'saj_facebook' )"><div style="background-color: #3a3c3e; width: auto; padding-left: 4px; padding-right: 4px; padding-top: 1px; padding-bottom: 1px; margin: 0px">Sign Up</div></a> <a href="#"  ng-click="checkout()">
-					<div style="position: relative; padding-top: 8px; padding-right: 10px">
-						<div style="border-radius: 50%; background: red; position: absolute; float: right; width: 25px; height: 25px; right: 0px; top: 0px">{{cart.items.length}}</div>
-						<div  style="width: auto; padding-left: 4px; padding-right: 4px; padding-top: 1px; padding-bottom: 0px; margin: 0px; positon: absolute">
-							Cart&nbsp;<img src="./images/cart.png" style="margin: 0px; padding: 0px; padding-bottom: 1px; vertical-align: bottom;" />
+				<a href="./">Home</a> <a href="#" style="text-align: center" onclick="window.open( 'https://www.facebook.com/sanskrithiweb', 'saj_facebook' )"><div style="background-color: #3D579D; width: auto; padding-left: 4px; padding-right: 4px; padding-top: 1px; padding-bottom: 1px; margin: 0px">facebook</div></a> <a id="menulogin" href="#loginPage">Login</a> <a href="#" style="text-align: center" onclick="window.open( 'https://www.facebook.com/sanskrithiweb', 'saj_facebook' )"><a href="#" ng-click="checkout()">
+						<div style="position: relative; padding-top: 8px; padding-right: 10px">
+							<div style="border-radius: 50%; background: red; position: absolute; float: right; width: 25px; height: 25px; right: 0px; top: 0px">{{cart.items.length}}</div>
+							<div style="width: auto; padding-left: 4px; padding-right: 4px; padding-top: 1px; padding-bottom: 0px; margin: 0px; positon: absolute">
+								Cart&nbsp;<img src="./images/cart.png" style="margin: 0px; padding: 0px; padding-bottom: 1px; vertical-align: bottom;" />
+							</div>
 						</div>
-					</div>
 				</a>
-
 			</nav>
 		</div>
 
 	</header>
 
 	<div class="header-fixed-placeholder"></div>
-
-	<script>
-		//Google Analytics
-
-		(function(i, s, o, g, r, a, m) {
-			i['GoogleAnalyticsObject'] = r;
-			i[r] = i[r] || function() {
-				(i[r].q = i[r].q || []).push(arguments)
-			}, i[r].l = 1 * new Date();
-			a = s.createElement(o), m = s.getElementsByTagName(o)[0];
-			a.async = 1;
-			a.src = g;
-			m.parentNode.insertBefore(a, m)
-		})(window, document, 'script',
-				'//www.google-analytics.com/analytics.js', 'ga');
-
-		ga('create', 'UA-61247237-1', 'auto');
-		ga('send', 'pageview');
-	</script>
-
 	<script src="js/app.js"></script>
 	<script src="js/controllers.js"></script>
 
@@ -92,187 +83,334 @@
 		</div>
 	</nav>
 
+	<div id="header" class="container" style="position: absolute; padding: 10px">
+
+		<div id="tabs" style="float: left" ng-init="type='$ER'">
+			<input id="tab-1" type="radio" value="$ER" name="tab-group" ng-model="type" ng-checked="true" /> <label for="tab-1">Earrings</label> <input id="tab-6" type="radio" value="$NE" name="tab-group" ng-model="type" /> <label for="tab-6">Necklace</label> <input id="tab-3" type="radio" value="$BA" name="tab-group" ng-model="type" /> <label for="tab-3">Bangles</label> <input id="tab-4" type="radio" value="$BR" name="tab-group" ng-model="type" /> <label for="tab-4">Bracelets</label><input id="tab-5" type="radio" value="$AN" name="tab-group" ng-model="type" /> <label for="tab-4">Anklet</label>
+		</div>
+
+		<div id="mobileTabs">
+			<label for="selType">Model:</label> <select ng-model="type" id="selType">
+				<option value="$ER" selected="selected">Earrings</option>
+				<option value="$NE">Necklace</option>
+				<option value="$BA">Bangles</option>
+				<option value="$BR">Bracelets</option>
+				<option value="$AN">Anklet</option>
+			</select>
+		</div>
+		<br /> <br />
 
 
-	<table style="border-spacing: 5px;">
-		<tr>
-			<td>
+	<main class="cd-main-content">
+		<div class="cd-tab-filter-wrapper">
+			<div class="cd-tab-filter">
+				<ul class="cd-filters">
+					<li class="placeholder"> 
+						<a data-type="all" href="#0">All</a> <!-- selected option on mobile -->
+					</li> 
+					<li class="filter"><a class="selected" href="#0" data-type="all">All</a></li>
+					<li class="filter" data-filter=".color-1"><a href="#0" data-type="color-1">Color 1</a></li>
+					<li class="filter" data-filter=".color-2"><a href="#0" data-type="color-2">Color 2</a></li>
+				</ul> <!-- cd-filters -->
+			</div> <!-- cd-tab-filter -->
+		</div> <!-- cd-tab-filter-wrapper -->
 
-				<div id="header" class="container" style="position: absolute">
-
-					<div id="tabs" style="float: left" ng-init="type='$JW'">
-						<input id="tab-1" type="radio" value="$JW" name="tab-group" ng-model="type" ng-checked="true" /> <label for="tab-1">Jewelry</label> <input id="tab-6" type="radio" value="$KU" name="tab-group" ng-model="type" /> <label for="tab-6">Kurthis</label> <input id="tab-3" type="radio" value="$SE" name="tab-group" ng-model="type" /> <label for="tab-3">Sets</label> <input id="tab-4" type="radio" value="$BL" name="tab-group" ng-model="type" /> <label for="tab-4">Blouses</label>
-					</div>
-
-					<div id="mobileTabs">
-						<label for="selType">Model:</label> <select ng-model="type" id="selType">
-							<option value="$JW" selected="selected">Jewelry</option>
-							<option value="$KU">Kurthis</option>
-							<option value="$SE">Sets</option>
-							<option value="$Bl">Blouses</option>
-						</select>
-					</div>
-
-
-
-
-					<br /> <br />
-
+		<section class="cd-gallery">
+		
 					<!-- ************************************** Product list *********************************************************************************** -->
-					<div id="features-wrapper">
-						<div class="container">
-							<div class="row">
-								<div class="2u" ng-repeat="product in products | filter:type">
-									<section class="box feature">
+		<div id="features-wrapper" ng-cloak>
+			<div class="container">
+				<div class="row">
+					<div class="2u" ng-repeat="product in products | filter:type">
+						<section class="box feature">
 
-										<div style="line-height: 1.0; overflow: hidden">
-											<a href="#openModal" class="image featured" ng-click="setViewProduct(product)"> <img bn-lazy-src="https://googledrive.com/host/0B2yfPSrBHXFFfkxxUEplYlVsYWVoMlVQMGJPNnJ1NFlKeXV5Zmg5QUdrR2pNU2RLQms0dmM/{{product.id}}.jpg" alt="Sanskrithi" />
+							<div style="line-height: 1.0; overflow: hidden">
+								<a href="#openModal" class="image featured" ng-click="setViewProduct(product)"> <img bn-lazy-src="https://googledrive.com/host/0B2yfPSrBHXFFfkxxUEplYlVsYWVoMlVQMGJPNnJ1NFlKeXV5Zmg5QUdrR2pNU2RLQms0dmM/{{product.id}}.jpg" alt="Sanskrithi" />
 
 
-												<div class="box feature inner">
-													<font class="dressDesc">{{product.name}}</font><br />
-													<div ng-if="product.discount == 0">
-														<font class="price">${{product.finalPrice}}</font><br />
-													</div>
-													<div ng-if="product.discount != 0">
-														<font class="oldPrice" style="line-height: 1.0">${{product.price}}</font><font class="salePrice">&nbsp;&nbsp;&nbsp;${{product.finalPrice}}</font><br />
-													</div>
-
-													<a href="#openModal" class="btn" ng-click="setviewProduct(product)">Add to Bag</a>
-												</div>
-											</a>
+									<div class="box feature inner">
+										<font class="dressDesc">{{product.name}}</font><br />
+										<div ng-if="product.discount == 0">
+											<font class="price">${{product.finalPrice}}</font><br />
 										</div>
-									</section>
-								</div>
+										<div ng-if="product.discount != 0">
+											<font class="oldPrice" style="line-height: 1.0">${{product.price}}</font><font class="salePrice">&nbsp;&nbsp;&nbsp;${{product.finalPrice}}</font><br />
+										</div>
+
+										<a href="#openModal" class="btn" ng-click="setviewProduct(product)">Add to Bag</a>
+									</div>
+								</a>
 							</div>
-						</div>
-
-
-
+						</section>
 					</div>
+				</div>
+			</div>
+		</div>
+			
+			<div class="cd-fail-message">No results found</div>
+		</section> <!-- cd-gallery -->
+
+		<div class="cd-filter">
+			<form>
+				<div class="cd-filter-block">
+					<h4>Search</h4>
+					
+					<div class="cd-filter-content">
+						<input type="search" placeholder="Try color-1...">
+					</div> <!-- cd-filter-content -->
+				</div> <!-- cd-filter-block -->
+
+				<div class="cd-filter-block">
+					<h4>Check boxes</h4>
+
+					<ul class="cd-filter-content cd-filters list">
+						<li>
+							<input class="filter" data-filter=".check1" type="checkbox" id="checkbox1">
+			    			<label class="checkbox-label" for="checkbox1">Option 1</label>
+						</li>
+
+						<li>
+							<input class="filter" data-filter=".check2" type="checkbox" id="checkbox2">
+							<label class="checkbox-label" for="checkbox2">Option 2</label>
+						</li>
+
+						<li>
+							<input class="filter" data-filter=".check3" type="checkbox" id="checkbox3">
+							<label class="checkbox-label" for="checkbox3">Option 3</label>
+						</li>
+					</ul> <!-- cd-filter-content -->
+				</div> <!-- cd-filter-block -->
+
+				<div class="cd-filter-block">
+					<h4>Select</h4>
+					
+					<div class="cd-filter-content">
+						<div class="cd-select cd-filters">
+							<select class="filter" name="selectThis" id="selectThis">
+								<option value="">Choose an option</option>
+								<option value=".option1">Option 1</option>
+								<option value=".option2">Option 2</option>
+								<option value=".option3">Option 3</option>
+								<option value=".option4">Option 4</option>
+							</select>
+						</div> <!-- cd-select -->
+					</div> <!-- cd-filter-content -->
+				</div> <!-- cd-filter-block -->
+
+				<div class="cd-filter-block">
+					<h4>Radio buttons</h4>
+
+					<ul class="cd-filter-content cd-filters list">
+						<li>
+							<input class="filter" data-filter="" type="radio" name="radioButton" id="radio1" checked>
+							<label class="radio-label" for="radio1">All</label>
+						</li>
+
+						<li>
+							<input class="filter" data-filter=".radio2" type="radio" name="radioButton" id="radio2">
+							<label class="radio-label" for="radio2">Choice 2</label>
+						</li>
+
+						<li>
+							<input class="filter" data-filter=".radio3" type="radio" name="radioButton" id="radio3">
+							<label class="radio-label" for="radio3">Choice 3</label>
+						</li>
+					</ul> <!-- cd-filter-content -->
+				</div> <!-- cd-filter-block -->
+			</form>
+
+			<a href="#0" class="cd-close">Close</a>
+		</div> <!-- cd-filter -->
+
+		<a href="#0" class="cd-filter-trigger">Filters</a>
+	</main> <!-- cd-main-content -->
 
 
-					<!-- *******************  Add to Cart - Popup Window ****************************************************************************************-->
 
-					<div id="openModal" class="modalDialog">
+		<!-- *******************  Add to Cart - Popup Window ****************************************************************************************-->
 
-						<div>
-							<a href="#close" title="Close" class="close">X</a>
+		<div id="openModal" class="modalDialog">
 
-							<table>
+			<div>
+				<a href="#close" title="Close" class="close">X</a>
 
-								<tr>
-									<td style="padding: 10px;"><a class="magnifier-thumb-wrapper" href="#"> <img style="max-width: 300px" id="thumb" data-large-img-wrapper="preview">
-									</a></td>
-									<td style="vertical-align: top; padding: 10px">
-										<div class="magnifier-preview" id="preview" style="width: 300px; height: 450px; position: relative">
-											<div id="addedToCart" style="visibility: hidden; position: relative; float: left">
-												<img src="images/tick.png" style="width: 0.9em" /><font>&nbsp;&nbsp;&nbsp;&nbsp;Item added to cart</font><br />
-											</div>
+				<table>
 
-											<any ng-if="viewProduct.discount == 0"> <font class="dressDescModel">{{viewProduct.name}}, ${{viewProduct.finalPrice}}</font> <br />
-											<br />
-											<font class="productSizeModel">{{viewProduct.desc}}</font> <br />
-											<br />
-											<font class="productSizeModel">Size: {{viewProduct.size}}&nbsp;{{viewProduct.sizeDesc}}</font> <br />
-											<br />
-											<font class="priceModel">Price: ${{viewProduct.finalPrice}}</font> <br />
-											<br />
-											<br />
-											<a href="#openModal" class="btn" id="btnAddToCart"  ng-click="addToCart(viewProduct)">Add to Bag</a> <br />
-											<a href="#" class="btn" id="btnCheckOut" style="visibility: hidden" ng-click="checkout()">Check Out</a> <a href="#" class="btn" id="btnContShopin" style="visibility: hidden" ng-click="exitModalDialog()">Continue Shopping</a> </any>
-											<br />
+					<tr>
+						<td style="padding: 10px;"><a class="magnifier-thumb-wrapper" href="#"> <img style="max-width: 300px" id="thumb" data-large-img-wrapper="preview">
+						</a></td>
+						<td style="vertical-align: top; padding: 10px">
+							<div class="magnifier-preview" id="preview" style="width: 300px; height: 450px; position: relative">
+								<div id="addedToCart" style="visibility: hidden; position: relative; float: left">
+									<img src="images/tick.png" style="width: 0.9em" /><font>&nbsp;&nbsp;&nbsp;&nbsp;Item added to cart</font><br />
+								</div>
 
-											<any ng-if="viewProduct.discount != 0"> <font class="dressDescModel">{{viewProduct.name}}, ${{viewProduct.finalPrice}}</font> <br />
-											<br />
-											<font class="productSizeModel">{{viewProduct.desc}}</font> <br />
-											<br />
-											<font class="productSizeModel">Size: {{viewProduct.size}}&nbsp;{{viewProduct.sizeDesc}}</font> <br />
-											<br />
-											<font class="priceModel">Orig Price: ${{viewProduct.price}}</font> <br />
-											<font class="priceModel">Discount: {{viewProduct.discount}}%</font> <br />
-											<font class="salePriceModel">New Price: ${{viewProduct.finalPrice}}</font> <br />
-											<br />
-											<a href="#openModal" class="btn" id="btnAddToCart" ng-click="addToCart(viewProduct)">Add to Bag</a> <br />
-											<a href="#" class="btn" id="btnCheckOut" style="visibility: hidden" ng-click="checkout()">Check Out</a> <a href="#" class="btn" id="btnContShopin" style="visibility: hidden" ng-click="exitModalDialog()">Continue Shopping</a> </any>
+								<any ng-if="viewProduct.discount == 0"> <font class="dressDescModel">{{viewProduct.name}}, ${{viewProduct.finalPrice}}</font> <br />
+								<br />
+								<font class="productSizeModel">{{viewProduct.desc}}</font> <br />
+								<br />
+								<font class="productSizeModel">Size: {{viewProduct.size}}&nbsp;{{viewProduct.sizeDesc}}</font> <br />
+								<br />
+								<font class="priceModel">Price: ${{viewProduct.finalPrice}}</font> <br />
+								<br />
+								<br />
+								<a href="#openModal" class="btn" id="btnAddToCart" ng-click="addToCart(viewProduct)">Add to Bag</a> <br />
+								<a href="#" class="btn" id="btnCheckOut" style="visibility: hidden" ng-click="checkout()">Check Out</a> <a href="#" class="btn" id="btnContShopin" style="visibility: hidden" ng-click="exitModalDialog()">Continue Shopping</a> </any>
+								<br />
 
-										</div>
+								<any ng-if="viewProduct.discount != 0"> <font class="dressDescModel">{{viewProduct.name}}, ${{viewProduct.finalPrice}}</font> <br />
+								<br />
+								<font class="productSizeModel">{{viewProduct.desc}}</font> <br />
+								<br />
+								<font class="productSizeModel">Size: {{viewProduct.size}}&nbsp;{{viewProduct.sizeDesc}}</font> <br />
+								<br />
+								<font class="priceModel">Orig Price: ${{viewProduct.price}}</font> <br />
+								<font class="priceModel">Discount: {{viewProduct.discount}}%</font> <br />
+								<font class="salePriceModel">New Price: ${{viewProduct.finalPrice}}</font> <br />
+								<br />
+								<a href="#openModal" class="btn" id="btnAddToCart" ng-click="addToCart(viewProduct)">Add to Bag</a> <br />
+								<a href="#" class="btn" id="btnCheckOut" style="visibility: hidden" ng-click="checkout()">Check Out</a> <a href="#" class="btn" id="btnContShopin" style="visibility: hidden" ng-click="exitModalDialog()">Continue Shopping</a> </any>
 
-									</td>
-								</tr>
+							</div>
 
-							</table>
+						</td>
+					</tr>
 
-						</div>
-					</div>
+				</table>
 
+			</div>
+		</div>
+
+	</div>
+
+
+
+
+
+	<div id="shopping-cart" class="shopping-cart" style="visibility: hidden; position: absolute">
+
+		<TABLE>
+			<TR class="column-labels">
+				<td class="product-image"></td>
+				<td class="product-details"></td>
+				<td class="product-price">Price</td>
+				<td class="product-quantity">Quantity</td>
+				<td class="product-line-price">Total</td>
+
+			</TR>
+			<div>
+				<TR class="product" ng-repeat="item in cart.items">
+					<td class="product-image"><img src="https://googledrive.com/host/0B2yfPSrBHXFFfkxxUEplYlVsYWVoMlVQMGJPNnJ1NFlKeXV5Zmg5QUdrR2pNU2RLQms0dmM/{{item.product.id}}.jpg"></td>
+					<td class="product-details">
+						<p class="product-description">
+							{{item.product.name}} <br /> {{item.product.desc}} <br /> Size: {{item.product.size}}, {{item.product.sizeDesc}}
+						</p>
+						<button class="remove-product" ng-click="removeFromCart(item)">Remove</button>
+					</td>
+					<td class="product-price">${{item.product.finalPrice}}</td>
+					<td class="product-quantity"><input ng-model="item.quantity" ng-change="updateItemInCart(item)" type="number" value="{{item.quantity}}" min="1" max="1"></td>
+
+					<td class="product-line-price">${{item.subtotal}}</td>
+				</TR>
+		</TABLE>
+
+
+		<div class="totals">
+			<div class="totals-item">
+				<label>Subtotal</label>
+				<div class="totals-value" id="cart-subtotal">71.97</div>
+			</div>
+		</div>
+
+		<button class="checkout">Checkout</button>
+
+	</div>
+
+
+
+
+	<div id="loginPage" class="modalDialog" style="z-index: 1;">
+
+		<div>
+			<a href="#close" title="Close" class="close">X</a>
+			<div id="login-form">
+
+				<input type="radio" checked id="login" name="switch" class="hide"> <input type="radio" id="signup" name="switch" class="hide">
+
+				<div>
+					<ul class="login-form-header">
+						<li><label for="login"><i class="fa fa-lock"></i> LOGIN<label for="login"></li>
+						<li><label for="signup"><i class="fa fa-credit-card"></i> REGISTER</label></li>
+					</ul>
 				</div>
 
-			<!-- *******************  Add to Cart - Popup Window ****************************************************************************************-->
+				<div class="login-section-out">
 
-					<div id="loginWindow" class="modalDialog">
+					<section class="login-section">
+						<div class="login">
 
-						<div>
-							<a href="#close" title="Close" class="close">X</a>
+							<div id="login-error" class="alert-box error" style="display: none">
+								<span>error: </span>Invalid EMail or Password!
+							</div>
 
-							<table>
-
-								<tr>
-									<td style="padding: 10px;"></td>
-									<td style="vertical-align: top; padding: 10px">	</td>
-								</tr>
-
-							</table>
-
+							<form ng-submit="login()">
+								<ul class="login-ul-list">
+									<li><input type="email" ng-model="login.email" required class="login-input" placeholder="Your Email" /><span class="icon"><i class="fa fa-user"></i></span></li>
+									<li><input type="password" ng-model="login.pass" required class="login-input" placeholder="Password" /><span class="icon"><i class="fa fa-lock"></i></span></li>
+									<li><span class="remember"><input type="checkbox" id="login-check" ng-model="login.save"> <label for="login-check">Remember Me</label></span><span class="remember"><a href="">Forgot Password</a></span></li>
+									<li><input type="submit" value="SIGN IN" class="login-button"></li>
+								</ul>
+							</form>
 						</div>
-					</div>
 
+						<div class="social-login">
+							<fb:login-button scope="public_profile,email" onlogin="checkLoginState();"></fb:login-button>
+							<div id="status"></div>
+
+
+							<!--
+												
+												Or sign in with &nbsp; <a href="" class="fb"><i class="fa fa-facebook"></i></a> 
+													<a href="" class="tw"><i class="fa fa-twitter"></i></a> <a href="" class="gp"><i class="fa fa-google-plus"></i></a> <a href="" class="in"><i class="fa fa-linkedin"></i></a>
+												 -->
+						</div>
+					</section>
+
+					<section class="signup-section">
+						<div class="login">
+
+							<div id="signup-error" class="alert-box error" style="display: none">
+								<span>Error: </span>Please contact sowji@sanskrithi.us
+							</div>
+
+							<form ng-submit="signup()">
+								<ul class="login-ul-list">
+									<li><input type="email" ng-model="login.email" required class="login-input" placeholder="Your Email" /><span class="icon"><i class="fa fa-user"></i></span></li>
+									<li><input type="text" ng-model="login.fname" required class="login-input" placeholder="Your Firstname" /><span class="icon"><i class="fa fa-info"></i></span></li>
+									<li><input type="text" ng-model="login.lname" required class="login-input" placeholder="Your Lastname" /><span class="icon"><i class="fa fa-info"></i></span></li>
+									<li><input type="password" ng-model="login.pass" required class="login-input" placeholder="Password" /><span class="icon"><i class="fa fa-lock"></i></span></li>
+									<li><input type="checkbox" required id="login-check1"> <label for="login-check1">I accept terms and conditions</label></li>
+									<li><input type="submit" value="SIGN UP" class="login-button"></li>
+								</ul>
+							</form>
+						</div>
+
+						<div class="social-login">
+							Or sign up with &nbsp; <a href="" class="login-fb"><i class="fa fa-facebook"></i></a>
+							<!-- 
+												 <a href="" class="tw"><i class="fa fa-twitter"></i></a> <a href="" class="gp"><i class="fa fa-google-plus"></i></a> <a href="" class="in"><i class="fa fa-linkedin"></i></a>
+												 -->
+						</div>
+					</section>
 				</div>
 
+			</div>
+		</div>
+	</div>
 
 
-				<div id="shopping-cart" class="shopping-cart" style="visibility: hidden; position: absolute">
-
-					<TABLE>
-						<TR class="column-labels">
-							<td class="product-image"></td>
-							<td class="product-details"></td>
-							<td class="product-price">Price</td>
-							<td class="product-quantity">Quantity</td>
-							<td class="product-line-price">Total</td>
-
-						</TR>
-						<div>
-							<TR class="product" ng-repeat="item in cart.items">
-								<td class="product-image"><img src="https://googledrive.com/host/0B2yfPSrBHXFFfkxxUEplYlVsYWVoMlVQMGJPNnJ1NFlKeXV5Zmg5QUdrR2pNU2RLQms0dmM/{{item.product.id}}.jpg"></td>
-								<td class="product-details">
-									<p class="product-description">
-										{{item.product.name}} <br /> {{item.product.desc}} <br /> Size: {{item.product.size}}, {{item.product.sizeDesc}}
-									</p>
-									<button class="remove-product" ng-click="removeFromCart(item)">Remove</button>
-								</td>
-								<td class="product-price">${{item.product.finalPrice}}</td>
-								<td class="product-quantity"><input ng-model="item.quantity" ng-change="updateItemInCart(item)" type="number" value="{{item.quantity}}" min="1" max="1"></td>
-								
-								<td class="product-line-price">${{item.subtotal}}</td>
-							</TR>
-					</TABLE>
 
 
-					<div class="totals">
-						<div class="totals-item">
-							<label>Subtotal</label>
-							<div class="totals-value" id="cart-subtotal">71.97</div>
-						</div>
-					</div>
-
-					<button class="checkout">Checkout</button>
-
-				</div>
-
-			</td>
-		</tr>
-	</table>
 	<script>
 		// To keep the header stick to the top
 		$(document).ready(function() {
@@ -301,5 +439,7 @@
 
 		});
 	</script>
+	
+<script src="js/filters/main.js"></script> 
 </body>
 </html>
