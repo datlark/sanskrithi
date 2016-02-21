@@ -66,7 +66,6 @@ Main Components
   clear: both;
 }
 .cd-main-content.is-fixed .cd-tab-filter-wrapper {
-  position: fixed;
   top: 0;
   left: 0;
   width: 100%;
@@ -75,7 +74,6 @@ Main Components
   padding-top: 76px;
 }
 .cd-main-content.is-fixed .cd-filter {
-  position: fixed;
   height: 100vh;
   overflow: hidden;
 }
@@ -85,7 +83,7 @@ Main Components
   -webkit-overflow-scrolling: touch;
 }
 .cd-main-content.is-fixed .cd-filter-trigger {
-  position: fixed;
+  
 }
 @media only screen and (min-width: 768px) {
   .cd-main-content.is-fixed .cd-gallery {
