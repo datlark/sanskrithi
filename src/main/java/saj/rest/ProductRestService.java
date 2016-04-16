@@ -12,19 +12,42 @@ import javax.ws.rs.core.MediaType;
 import saj.domain.Product;
 import saj.service.ProductService;
 
+import com.mysql.jdbc.StringUtils;
 
-@Path("/products")
+
+@Path("/")
 public class ProductRestService {
 
     @GET
+    @Path("/products/ids")
     @Produces(MediaType.APPLICATION_JSON)
-    public List<Product> getProducts (@QueryParam("id") List id) {
+    public List<Product> getProducts (@QueryParam("id") List<String> ids, @QueryParam("type") String type, 
+    		@QueryParam("size")List<String> size) {
         ProductService productService = new ProductService();
         try {
-        	if (id == null || id.isEmpty()){
-        		return productService.getAllProducts();
+        	if (ids != null && !ids.isEmpty()){
+        		return productService.getProducts(ids);
+        	}
+			
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return null;
+    }
+    
+    
+    @GET
+    @Path("/products/filter")
+    @Produces(MediaType.APPLICATION_JSON)
+    public List<Product> getProducts (@QueryParam("type") String type, @QueryParam("size")List<String> size,@QueryParam("price")List<String> price) {
+        ProductService productService = new ProductService();
+        try {
+        	if( (size != null && size.size()> 0) || !StringUtils.isNullOrEmpty(type) || (price != null && price.size()> 0)){
+        		return productService.getProducts(type, size, price);
+        		
         	}else{
-        		return productService.getProducts(id);
+        		return productService.getAllProducts();
         	}
 			
 		} catch (Exception e) {

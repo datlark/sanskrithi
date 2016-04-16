@@ -1,6 +1,9 @@
 // angular JS Apps
 var app = angular.module("sajApp", ['ngCookies']);
 
+
+// Initialize all other applications here....
+
 //Google Analytics
 
 (function(i, s, o, g, r, a, m) {
