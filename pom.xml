@@ -5,7 +5,6 @@
 	<version>1.0</version>
 	<name>Sanskrithi Maven Webapp</name>
 	<url>http://maven.apache.org</url>
-
 	<dependencies>
 
 		<!-- MySQL database driver -->
@@ -20,7 +19,7 @@
 			<groupId>org.hibernate</groupId>
 			<artifactId>hibernate-core</artifactId>
 			<version>4.1.9.Final</version>
-		
+
 		</dependency>
 		<dependency>
 			<groupId>org.hibernate</groupId>
@@ -28,13 +27,14 @@
 			<version>4.1.9.Final</version>
 		</dependency>
 
-
+<!-- 
 		<dependency>
 			<groupId>org.mortbay.jetty</groupId>
 			<artifactId>jsp-api-2.0</artifactId>
 			<version>6.1.14</version>
-
 		</dependency>
+		
+ -->		
 
 		<!-- javax: XML binding -->
 		<dependency>
@@ -44,29 +44,54 @@
 		</dependency>
 
 		<!-- RESTful web service: Jersey -->
-		<dependency>
-			<groupId>com.sun.jersey</groupId>
-			<artifactId>jersey-server</artifactId>
-			<version>1.17.1</version>
-		</dependency>
-		<dependency>
-			<groupId>com.sun.jersey</groupId>
-			<artifactId>jersey-servlet</artifactId>
-			<version>1.17.1</version>
-		</dependency>
-		<dependency>
-			<groupId>com.sun.jersey</groupId>
-			<artifactId>jersey-json</artifactId>
-			<version>1.17.1</version>
-		</dependency>
 
 
-		<!-- Unit testing -->
 		<dependency>
-			<groupId>junit</groupId>
-			<artifactId>junit</artifactId>
-			<version>3.8.1</version>
-			<scope>test</scope>
+			<groupId>org.glassfish.jersey.containers</groupId>
+			<artifactId>jersey-container-grizzly2-http</artifactId>
+			<version>2.23.2</version>
+		</dependency>
+
+		<dependency>
+			<groupId>org.glassfish.jersey.containers</groupId>
+			<artifactId>jersey-container-grizzly2-servlet</artifactId>
+			<version>2.23.2</version>
+		</dependency>
+
+		<dependency>
+			<groupId>org.glassfish.jersey.containers</groupId>
+			<artifactId>jersey-container-jdk-http</artifactId>
+			<version>2.23.2</version>
+		</dependency>
+
+		<dependency>
+			<groupId>org.glassfish.jersey.containers</groupId>
+			<artifactId>jersey-container-simple-http</artifactId>
+			<version>2.23.2</version>
+		</dependency>
+
+		<dependency>
+			<groupId>org.glassfish.jersey.containers</groupId>
+			<artifactId>jersey-container-jetty-http</artifactId>
+			<version>2.23.2</version>
+		</dependency>
+
+		<dependency>
+			<groupId>org.glassfish.jersey.containers</groupId>
+			<artifactId>jersey-container-jetty-servlet</artifactId>
+			<version>2.23.2</version>
+		</dependency>
+
+		<dependency>
+			<groupId>org.glassfish.jersey.media</groupId>
+			<artifactId>jersey-media-json-jettison</artifactId>
+			<version>2.23.2</version>
+		</dependency>
+		
+		<dependency>
+		    <groupId>org.glassfish.jersey.media</groupId>
+		    <artifactId>jersey-media-moxy</artifactId>
+		    <version>2.23.2</version>
 		</dependency>
 
 		<dependency>
@@ -76,15 +101,17 @@
 		</dependency>
 
 	</dependencies>
+
 	<build>
 		<finalName>saj</finalName>
-	   <resources>
-	     <resource>
-	       <directory>src/main/java/resources</directory>
-	     </resource>
-	   </resources>
-   
+		<resources>
+			<resource>
+				<directory>src/main/java/resources</directory>
+			</resource>
+		</resources>
+
 		<plugins>
+
 			<plugin>
 				<groupId>org.apache.tomcat.maven</groupId>
 				<artifactId>tomcat7-maven-plugin</artifactId>
@@ -100,48 +127,25 @@
 			</plugin>
 
 			<plugin>
-				<groupId>org.mortbay.jetty</groupId>
-				<artifactId>maven-jetty-plugin</artifactId>
-				<version>6.1.10</version>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-war-plugin</artifactId>
+				<version>2.3</version>
 				<configuration>
-					<scanIntervalSeconds>10</scanIntervalSeconds>
-					<stopKey>foo</stopKey>
-					<stopPort>9999</stopPort>
-
-
-					<scanTargetPatterns>
-						<scanTargetPattern>
-							<directory>src</directory>
-							<includes>
-								<include>**/*.xml</include>
-								<include>**/*.properties</include>
-							</includes>
-
-						</scanTargetPattern>
-					</scanTargetPatterns>
-
+					<failOnMissingWebXml>false</failOnMissingWebXml>
 				</configuration>
-				<executions>
-					<execution>
-						<id>start-jetty</id>
-						<phase>pre-integration-test</phase>
-						<goals>
-							<goal>run</goal>
-						</goals>
-						<configuration>
-							<scanIntervalSeconds>0</scanIntervalSeconds>
-							<daemon>true</daemon>
-						</configuration>
-					</execution>
-					<execution>
-						<id>stop-jetty</id>
-						<phase>post-integration-test</phase>
-						<goals>
-							<goal>stop</goal>
-						</goals>
-					</execution>
-				</executions>
 			</plugin>
+
+
+			<!-- Jetty Plugin <plugin> <groupId>org.mortbay.jetty</groupId> <artifactId>maven-jetty-plugin</artifactId> 
+				<version>6.1.10</version> <configuration> <scanIntervalSeconds>10</scanIntervalSeconds> 
+				<stopKey>foo</stopKey> <stopPort>9999</stopPort> <scanTargetPatterns> <scanTargetPattern> 
+				<directory>src</directory> <includes> <include>**/*.xml</include> <include>**/*.properties</include> 
+				</includes> </scanTargetPattern> </scanTargetPatterns> </configuration> <executions> 
+				<execution> <id>start-jetty</id> <phase>pre-integration-test</phase> <goals> 
+				<goal>run</goal> </goals> <configuration> <scanIntervalSeconds>0</scanIntervalSeconds> 
+				<daemon>true</daemon> </configuration> </execution> <execution> <id>stop-jetty</id> 
+				<phase>post-integration-test</phase> <goals> <goal>stop</goal> </goals> </execution> 
+				</executions> </plugin> -->
 
 		</plugins>
 	</build>

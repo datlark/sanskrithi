@@ -174,7 +174,7 @@ app.controller("Products", ['$scope','$http','$cookies', function($scope, $http,
 		 queryString = queryString + price;
 		 
 		 
-		 $http.get('/saj/rest/products/filter?type=' + queryString).success(function(data) {
+		 $http.get('/rest/products/filter?type=' + queryString).success(function(data) {
 				$scope.products = data;
 					
 			})
@@ -227,8 +227,8 @@ app.controller("Products", ['$scope','$http','$cookies', function($scope, $http,
 	}
 
 	// Get List of updated list of Products for the items in the cart. This is to make sure prices are displayed upto date
-	/*For localhost use /saj/rest/dress*/
-	$http.get('/saj/rest/products/filter?id=' + idList).success(function(data) {
+	/*For localhost use /rest/dress*/
+	$http.get('/rest/products/filter?id=' + idList).success(function(data) {
 		var products = data;
 		
 		if (cart != null){
@@ -402,7 +402,7 @@ app.controller("Products", ['$scope','$http','$cookies', function($scope, $http,
 		
 		
 		$http({
-			   url : "/saj/rest/users/userreg",
+			   url : "/rest/users/userreg",
 			   method : "POST",
 			   data : JSON.stringify(user),
 			   headers : {
@@ -453,7 +453,7 @@ app.controller("Products", ['$scope','$http','$cookies', function($scope, $http,
 		
 		
 		$http({
-			   url : "/saj/rest/users/userlogin",
+			   url : "/rest/users/userlogin",
 			   method : "POST",
 			   data : JSON.stringify(user),
 			   headers : {
