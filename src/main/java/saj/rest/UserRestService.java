@@ -20,7 +20,7 @@ public class UserRestService {
 	@Consumes(MediaType.APPLICATION_JSON)
 	@Produces(MediaType.APPLICATION_JSON)
 	@Path("/userreg")
-	public int register(User user) throws Exception {
+	public String register(User user) throws Exception {
 	
     	UserService userService = new UserService();
     	JSONObject json = new JSONObject();
@@ -36,11 +36,10 @@ public class UserRestService {
 			e.printStackTrace();
 			
 			json.put("status", "fail");
-			return 2;
+			return "2";
 			
 		}
-    	
-    	
+		
     	
 	}
    
@@ -50,14 +49,20 @@ public class UserRestService {
 	@Consumes(MediaType.APPLICATION_JSON)
 	@Produces(MediaType.APPLICATION_JSON)
 	@Path("/userlogin")
-	public boolean login(User user) throws Exception {
+	public String login(User user) throws Exception {
 	
     	UserService userService = new UserService();
     	JSONObject json = new JSONObject();
     	
     	try {
     		
-			return userService.login(user);
+			boolean isLoginSuccess = userService.login(user);
+			
+			if(isLoginSuccess){
+				return "true";
+			}else{
+				return "false";
+			}
 			
 			
 		} catch (Exception e) {
@@ -66,7 +71,7 @@ public class UserRestService {
 			
 		}
     	
-    	return false;
+    	return "false";
     	
 	}
    

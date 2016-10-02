@@ -1,10 +1,17 @@
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
 	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
 	<modelVersion>4.0.0</modelVersion>
-	<packaging>war</packaging>
 	<version>1.0</version>
+	<artifactId>saj</artifactId>
+	<groupId>saj</groupId>
 	<name>Sanskrithi Maven Webapp</name>
 	<url>http://maven.apache.org</url>
+	<packaging>war</packaging>
+
+	<properties>
+		<failOnMissingWebXml>false</failOnMissingWebXml>
+	</properties>
+
 	<dependencies>
 
 		<!-- MySQL database driver -->
@@ -27,14 +34,11 @@
 			<version>4.1.9.Final</version>
 		</dependency>
 
-<!-- 
-		<dependency>
-			<groupId>org.mortbay.jetty</groupId>
-			<artifactId>jsp-api-2.0</artifactId>
-			<version>6.1.14</version>
-		</dependency>
-		
- -->		
+	<dependency>
+	    <groupId>org.hibernate</groupId>
+	    <artifactId>hibernate-validator</artifactId>
+	    <version>5.2.4.Final</version>
+	</dependency>
 
 		<!-- javax: XML binding -->
 		<dependency>
@@ -70,6 +74,7 @@
 			<version>2.23.2</version>
 		</dependency>
 
+
 		<dependency>
 			<groupId>org.glassfish.jersey.containers</groupId>
 			<artifactId>jersey-container-jetty-http</artifactId>
@@ -87,20 +92,23 @@
 			<artifactId>jersey-media-json-jettison</artifactId>
 			<version>2.23.2</version>
 		</dependency>
-		
-		<dependency>
-		    <groupId>org.glassfish.jersey.media</groupId>
-		    <artifactId>jersey-media-moxy</artifactId>
-		    <version>2.23.2</version>
-		</dependency>
 
 		<dependency>
-			<groupId>org.apache.maven.plugins</groupId>
-			<artifactId>maven-resources-plugin</artifactId>
-			<version>2.4.3</version>
+			<groupId>org.glassfish.jersey.media</groupId>
+			<artifactId>jersey-media-moxy</artifactId>
+			<version>2.23.2</version>
 		</dependency>
+
+<dependency>
+  <groupId>com.fasterxml.jackson.jaxrs</groupId>
+  <artifactId>jackson-jaxrs-json-provider</artifactId>
+  <version>2.3.0</version>
+</dependency>
+
+
 
 	</dependencies>
+
 	<profiles>
 		<profile>
 			<id>dev</id>
@@ -113,31 +121,89 @@
 			</activation>
 
 			<build>
-					<finalName>saj</finalName>
+				<finalName>saj</finalName>
 				<resources>
 					<resource>
-						<directory>src/main/java/resources</directory>
+						<directory>src/main/java/resources/dev</directory>
 					</resource>
 				</resources>
-		
 				<plugins>
 					<plugin>
-						<groupId>org.apache.maven.plugins</groupId>
-						<artifactId>maven-war-plugin</artifactId>
-						<version>2.6</version>
+						<groupId>org.eclipse.jetty</groupId>
+						<artifactId>jetty-maven-plugin</artifactId>
+						<version>9.2.11.v20150529</version>
+					</plugin>
+
+				</plugins>
+			</build>
+		</profile>
+
+		<!-- Test Profile - Localhost Jboss -->
+
+		<profile>
+			<id>test</id>
+			<activation>
+				<property>
+					<name>env</name>
+					<value>test</value>
+				</property>
+			</activation>
+			<build>
+				<finalName>saj</finalName>
+				<resources>
+					<resource>
+						<directory>src/main/java/resources/test</directory>
+					</resource>
+				</resources>
+				<plugins>
+					<plugin>
+						<groupId>org.jboss.as.plugins</groupId>
+						<artifactId>jboss-as-maven-plugin</artifactId>
+						<version>7.0.Final</version>
 						<configuration>
-							<failOnMissingWebXml>false</failOnMissingWebXml>
+							<contextPath>/</contextPath>
 						</configuration>
+
 					</plugin>
 				</plugins>
 			</build>
 
-			
+
 
 		</profile>
 
-		
+
+		<!-- Production Profile -->
+
+		<profile>
+			<id>prod</id>
+			<activation>
+				<property>
+					<name>env</name>
+					<value>prod</value>
+				</property>
+			</activation>
+			<build>
+				<finalName>saj</finalName>
+				<resources>
+					<resource>
+						<directory>src/main/java/resources/prod</directory>
+					</resource>
+					<resource>
+						<directory>src/main/java/resources</directory>
+					</resource>
+				</resources>
+				<plugins>
+					<plugin>
+						<groupId>org.apache.tomcat.maven</groupId>
+						<artifactId>tomcat7-maven-plugin</artifactId>
+						<version>7.3.Final</version>
+
+					</plugin>
+				</plugins>
+			</build>
+		</profile>
 	</profiles>
-	<groupId>saj</groupId>
-	<artifactId>saj</artifactId>
+
+
 </project>

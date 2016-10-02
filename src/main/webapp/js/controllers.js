@@ -495,7 +495,7 @@ app.controller("Products", ['$scope','$http','$cookies', function($scope, $http,
 		
 		$scope.viewProduct = item;
 		
-		var imageSource = 'https://googledrive.com/host/0B2yfPSrBHXFFfkxxUEplYlVsYWVoMlVQMGJPNnJ1NFlKeXV5Zmg5QUdrR2pNU2RLQms0dmM/'+ item.id + '.jpg'; 
+		var imageSource = '/sans-img/images/'+ item.id + '.jpg'; 
 		
 		document.getElementById("thumb").src = imageSource;
 		document.getElementById("thumb").setAttribute('data-large-img-url',imageSource);
@@ -506,7 +506,7 @@ app.controller("Products", ['$scope','$http','$cookies', function($scope, $http,
 		
 		$scope.m.attach({
 		    thumb: '#thumb',
-		    large: 'https://googledrive.com/host/0B2yfPSrBHXFFfkxxUEplYlVsYWVoMlVQMGJPNnJ1NFlKeXV5Zmg5QUdrR2pNU2RLQms0dmM/'+ item.id + '.jpg',
+		    large: '/sans-img/images/'+ item.id + '.jpg',
 		    largeWrapper: 'preview',
 		    zoom: 3
 		});

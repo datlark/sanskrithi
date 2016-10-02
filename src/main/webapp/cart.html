@@ -174,7 +174,7 @@
 			</TR>
 			
 			<TR class="product" ng-repeat="item in cart.items">
-				<td class="product-image"><img src="https://googledrive.com/host/0B2yfPSrBHXFFfkxxUEplYlVsYWVoMlVQMGJPNnJ1NFlKeXV5Zmg5QUdrR2pNU2RLQms0dmM/{{item.product.id}}.jpg"></td>
+				<td class="product-image"><img src="/sans-img/images/{{item.product.id}}.jpg"></td>
 				<td class="product-details">
 					<p class="product-description">
 						{{item.product.name}} <br /> {{item.product.desc}} <br /> Size: {{item.product.size}}, {{item.product.sizeDesc}}
@@ -314,5 +314,20 @@
 	</script>
 
 	<script src="js/filters/main.js"></script>
+	
+	<!--  -->
+		
+	<form action="/your-charge-code" method="POST">
+	  <script
+	    src="https://checkout.stripe.com/checkout.js" class="stripe-button"
+	    data-key="pk_test_Czv4XTjHXpT6d5594VhrzKZq"
+	    data-amount="999"
+	    data-name="Demo Site"
+	    data-description="Widget"
+	    data-image="/img/documentation/checkout/marketplace.png"
+	    data-locale="auto">
+	  </script>
+	</form>
+	
 </body>
 </html>

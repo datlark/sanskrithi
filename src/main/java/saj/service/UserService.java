@@ -18,7 +18,7 @@ public class UserService {
 	 * @return
 	 * @throws Exception
 	 */
-	public int register(User user) throws Exception {
+	public String register(User user) throws Exception {
 
 		SessionFactory factory = HibernateUtil.getSessionFactory();
 		StatelessSession session = factory.openStatelessSession();
@@ -33,7 +33,7 @@ public class UserService {
 
 			if (dbUser != null) {
 				//already exits
-				return 1;
+				return "1";
 			} else {
 				session.insert(user);
 			}
@@ -44,12 +44,12 @@ public class UserService {
 			if (tx != null)
 				tx.rollback();
 			e.printStackTrace();
-			return 2;
+			return "2";
 		} finally {
 			session.close();
 		}
 		//newly registered
-		return 0;
+		return "0";
 
 	}
 

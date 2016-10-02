@@ -24,7 +24,6 @@
 </context-param>
 
 
-
     <servlet>
         <servlet-name>jersey-serlvet</servlet-name>
         <servlet-class>org.glassfish.jersey.servlet.ServletContainer </servlet-class>
