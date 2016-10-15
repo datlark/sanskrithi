@@ -1,5 +1,8 @@
 package saj.rest;
 
+import java.util.HashMap;
+import java.util.Map;
+
 import javax.ws.rs.Consumes;
 import javax.ws.rs.POST;
 import javax.ws.rs.Path;
@@ -8,6 +11,10 @@ import javax.ws.rs.core.MediaType;
 
 import org.codehaus.jettison.json.JSONObject;
 
+import com.stripe.exception.CardException;
+import com.stripe.model.Charge;
+
+import saj.domain.Order;
 import saj.domain.User;
 import saj.service.UserService;
 
@@ -75,6 +82,40 @@ public class UserRestService {
     	
 	}
    
+  
+    
+
+    @POST
+    @Consumes(MediaType.APPLICATION_JSON)
+	@Produces(MediaType.APPLICATION_JSON)
+	
+  	@Path("/checkout")
+  	public String checkout(Order order) throws Exception {
+  	
+
+
+    	// Create a charge: this will charge the user's card
+    	try {
+    	  Map<String, Object> chargeParams = new HashMap<String, Object>();
+    	  
+    	  chargeParams.put("amount", order.getPrice()); // Amount in cents
+    	  chargeParams.put("currency", "usd");
+    	  chargeParams.put("source", order.getTokenID());
+    	  chargeParams.put("description", "Sanskrithi Jewelry");
+
+    	  Charge charge = Charge.create(chargeParams);
+    	} catch (CardException e) {
+    	  return "false";
+    	}
+    	  
+    	  
+    	  
+    	  return "true";	
+  			
+  			
+  	}
+    
+
     
     
     

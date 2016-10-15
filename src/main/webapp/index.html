@@ -18,8 +18,6 @@
 <script src="js/init.js"></script>
 <script src="lib/angular/angular.js"></script>
 <script src="lib/angular/angular-cookies.js"></script>
-<script type="text/javascript" src="js/magnifier/Event.js"></script>
-<script type="text/javascript" src="js/magnifier/Magnifier.js"></script>
 <script src="js/cart.js"></script>
 
 
@@ -29,7 +27,6 @@
 <link rel="stylesheet" href="css/style.css" />
 <link rel="stylesheet" href="css/cart.css" />
 <link rel="stylesheet" href="css/style-desktop.css" />
-<link rel="stylesheet" href="css/magnifier.css">
 <link rel="stylesheet" href="css/header/header-menu.css">
 <link rel="stylesheet" href="css/header/header-fixed.css">
 <link href="//fonts.googleapis.com/css?family=Cookie" rel="stylesheet" type="text/css">
@@ -62,13 +59,21 @@
 			</h1>
 
 			<nav>
-				<a href="./">Home</a> <a href="#" style="text-align: center" onclick="window.open( 'https://www.facebook.com/sanskrithiweb', 'saj_facebook' )"><div style="background-color: #3D579D; width: auto; padding-left: 4px; padding-right: 4px; padding-top: 1px; padding-bottom: 1px; margin: 0px">facebook</div></a> <a id="menulogin" href="#loginPage">Login</a> <a href="#" style="text-align: center" onclick="window.open( 'https://www.facebook.com/sanskrithiweb', 'saj_facebook' )"><a href="cart.html" >
-						<div style="position: relative; padding-top: 8px; padding-right: 10px">
-							<div style="border-radius: 50%; background: red; position: absolute; float: right; width: 25px; height: 25px; right: 0px; top: 0px">{{cart.items.length}}</div>
-							<div style="width: auto; padding-left: 4px; padding-right: 4px; padding-top: 1px; padding-bottom: 0px; margin: 0px; positon: absolute">
-								Cart&nbsp;<img src="./images/cart.png" style="margin: 0px; padding: 0px; padding-bottom: 1px; vertical-align: bottom;" />
-							</div>
+				<a href="./">Home</a> 
+				
+				
+				<span style="background-color: #3D579D; width: auto; padding-left: 4px; padding-right: 4px; padding-top: 1px; padding-bottom: 1px; margin: 0px">
+					<a href="#" style="text-align: center" onclick="window.open( 'https://www.facebook.com/sanskrithiweb', 'saj_facebook' )">facebook</a> 
+				</span>
+				
+				
+				<a href="cart.html" >
+					<div style="position: relative; padding-top: 8px; padding-right: 10px">
+						<div style="border-radius: 50%; background: red; position: absolute; float: right; width: 25px; height: 25px; right: 0px; top: 0px">{{cart.items.length}}</div>
+						<div style="width: auto; padding-left: 4px; padding-right: 4px; padding-top: 1px; padding-bottom: 0px; margin: 0px; positon: absolute">
+							Cart&nbsp;<img src="./images/cart.png" style="margin: 0px; padding: 0px; padding-bottom: 1px; vertical-align: bottom;" />
 						</div>
+					</div>
 				</a>
 			</nav>
 		</div>
@@ -194,24 +199,7 @@
 						</ul>
 					</div>				
 
-	
-	<!-- 
-					<div class="cd-filter-block">
-						<h4>Select</h4>
-	
-						<div class="cd-filter-content">
-							<div class="cd-select cd-filters">
-								<select class="filter" name="selectThis" id="selectThis">
-									<option value="">Choose an option</option>
-									<option value=".option1">Option 1</option>
-									<option value=".option2">Option 2</option>
-									<option value=".option3">Option 3</option>
-									<option value=".option4">Option 4</option>
-								</select>
-							</div>
-						</div>
-					</div>
- -->
+
 				</form>
 	
 				<a href="#0" class="cd-close">Close</a>
@@ -231,7 +219,7 @@
 		</div>
 	</nav>
 
-	<div id="header" class="container" style="position: absolute; padding: 10px">
+	<div id="header" class="container" style="position: absolute; padding: 10px"> </div>
 		<!-- 
 		<div id="tabs" style="float: left" ng-init="type='$ER'">
 			<input id="tab-1" type="radio" value="$ER" name="tab-group" ng-model="type" ng-checked="true" /> <label for="tab-1">Earrings</label> <input id="tab-6" type="radio" value="$NE" name="tab-group" ng-model="type" /> <label for="tab-6">Necklace</label> <input id="tab-3" type="radio" value="$BA" name="tab-group" ng-model="type" /> <label for="tab-3">Bangles</label> <input id="tab-4" type="radio" value="$BR" name="tab-group" ng-model="type" /> <label for="tab-4">Bracelets</label><input id="tab-5" type="radio" value="$AN" name="tab-group" ng-model="type" /> <label for="tab-4">Anklet</label>
@@ -252,63 +240,6 @@
 
 
 
-		<!-- *******************  Add to Cart - Popup Window ****************************************************************************************-->
-
-		<div id="openModal" class="modalDialog">
-
-			<div>
-				<a href="#close" title="Close" class="close">X</a>
-
-				<table>
-
-					<tr>
-						<td style="padding: 10px;"><a class="magnifier-thumb-wrapper" href="#"> <img style="max-width: 300px" id="thumb" data-large-img-wrapper="preview">
-						</a></td>
-						<td style="vertical-align: top; padding: 10px">
-							<div class="magnifier-preview" id="preview" style="width: 300px; height: 450px; position: relative">
-								<div id="addedToCart" style="visibility: hidden; position: relative; float: left">
-									<img src="images/tick.png" style="width: 0.9em" /><font>&nbsp;&nbsp;&nbsp;&nbsp;Item added to cart</font><br />
-								</div>
-
-								<any ng-if="viewProduct.discount == 0"> <font class="dressDescModel">{{viewProduct.name}}, ${{viewProduct.finalPrice}}</font> <br />
-								<br />
-								<font class="productSizeModel">{{viewProduct.desc}}</font> <br />
-								<br />
-								<font class="productSizeModel">Size: {{viewProduct.size}}&nbsp;{{viewProduct.sizeDesc}}</font> <br />
-								<br />
-								<font class="priceModel">Price: ${{viewProduct.finalPrice}}</font> <br />
-								<br />
-								<br />
-								<a href="#openModal" class="btn" id="btnAddToCart" ng-click="addToCart(viewProduct)">Add to Bag</a> <br />
-								<a href="#" class="btn" id="btnCheckOut" style="visibility: hidden" ng-click="checkout()">Check Out</a> <a href="#" class="btn" id="btnContShopin" style="visibility: hidden" ng-click="exitModalDialog()">Continue Shopping</a> </any>
-								<br />
-
-								<any ng-if="viewProduct.discount != 0"> <font class="dressDescModel">{{viewProduct.name}}, ${{viewProduct.finalPrice}}</font> <br />
-								<br />
-								<font class="productSizeModel">{{viewProduct.desc}}</font> <br />
-								<br />
-								<font class="productSizeModel">Size: {{viewProduct.size}}&nbsp;{{viewProduct.sizeDesc}}</font> <br />
-								<br />
-								<font class="priceModel">Orig Price: ${{viewProduct.price}}</font> <br />
-								<font class="priceModel">Discount: {{viewProduct.discount}}%</font> <br />
-								<font class="salePriceModel">New Price: ${{viewProduct.finalPrice}}</font> <br />
-								<br />
-								<a href="#openModal" class="btn" id="btnAddToCart" ng-click="addToCart(viewProduct)">Add to Bag</a> <br />
-								<a href="cart.html" class="btn" id="btnCheckOut" style="visibility: hidden">Check Out</a> <a href="#" class="btn" id="btnContShopin" style="visibility: hidden" ng-click="exitModalDialog()">Continue Shopping</a> </any>
-
-							</div>
-
-						</td>
-					</tr>
-
-				</table>
-
-			</div>
-		</div>
-
-	</div>
-
-
 	<div id="loginPage" class="modalDialog" style="z-index: 1;">
 
 		<div>
@@ -319,7 +250,7 @@
 
 				<div>
 					<ul class="login-form-header">
-						<li><label for="login"><i class="fa fa-lock"></i> LOGIN<label for="login"></li>
+						<li><label for="login"><i class="fa fa-lock"></i> LOGIN</label></li>
 						<li><label for="signup"><i class="fa fa-credit-card"></i> REGISTER</label></li>
 					</ul>
 				</div>

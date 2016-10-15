@@ -1,18 +1,27 @@
 package saj.rest;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
+import javax.ws.rs.Consumes;
+import javax.ws.rs.FormParam;
 import javax.ws.rs.GET;
+import javax.ws.rs.POST;
 import javax.ws.rs.Path;
 import javax.ws.rs.PathParam;
 import javax.ws.rs.Produces;
 import javax.ws.rs.QueryParam;
 import javax.ws.rs.core.MediaType;
+import javax.ws.rs.core.Response;
 
 import saj.domain.Product;
 import saj.service.ProductService;
 
 import com.mysql.jdbc.StringUtils;
+import com.stripe.Stripe;
+import com.stripe.exception.CardException;
+import com.stripe.model.Charge;
 
 
 @Path("/")
@@ -75,7 +84,8 @@ public class ProductRestService {
 
    
    
-
+    
+        
     
     
     

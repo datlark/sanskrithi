@@ -1,1 +1,17 @@
-{"ide":{},"plugins":{"guess-types":{},"outline":{},"angular":{}},"libs":["ecma5","browser"]}
+{
+  "plugins": {
+    "guess-types": {
+      
+    },
+    "outline": {
+      
+    },
+    "angular1": {
+      
+    }
+  },
+  "libs": [
+    "ecma5",
+    "browser"
+  ]
+}

@@ -1,4 +1,4 @@
-
+//TODO Not sure if this LoginController is used. Remove it if not needed
 app.controller("LoginController", function($scope, $rootScope, AUTH_EVENTS,
 		AuthService) {
 
@@ -16,6 +16,7 @@ app.controller("LoginController", function($scope, $rootScope, AUTH_EVENTS,
 	};
 
 }
+
 
 );
 
@@ -377,16 +378,14 @@ app.controller("Products", ['$scope','$http','$cookies', function($scope, $http,
 	
 	
 	
-	$scope.checkout = function(){
+	$scope.checkoutPage = function(){
 		
 		document.getElementById("header").style.visibility = 'hidden';
 		document.getElementById("shopping-cart").style.visibility = 'visible';
 	}	
 	
 	
-	
-	/*********************************** PRoduct page Functionlity **********************************************/
-	
+
 	
 
 	
@@ -487,48 +486,122 @@ app.controller("Products", ['$scope','$http','$cookies', function($scope, $http,
 		
 	}
 	
+
 	
+	/*********************************** Product page Functionality **********************************************/
+	
+
+	
+	
+	try{
+		$scope.viewProduct = $cookies.getObject('viewProduct');
+	}catch(e){
+		
+		alert(e);
+	}
+	
+	// Sets the product on click, and navigates to product page
 	
 	$scope.setViewProduct= function(item){
 		
 		// Initialize view Product Window
 		
-		$scope.viewProduct = item;
-		
-		var imageSource = '/sans-img/images/'+ item.id + '.jpg'; 
-		
-		document.getElementById("thumb").src = imageSource;
-		document.getElementById("thumb").setAttribute('data-large-img-url',imageSource);
-		
-		var evt = new Event();
-		$scope.m = new Magnifier(evt);
-	
-		
-		$scope.m.attach({
-		    thumb: '#thumb',
-		    large: '/sans-img/images/'+ item.id + '.jpg',
-		    largeWrapper: 'preview',
-		    zoom: 3
-		});
+		$cookies.putObject('viewProduct', item);
 		
 		
-		document.getElementById("thumb").className = '';
 		
-		if(document.getElementById("thumb-large") != null)
-			document.getElementById("thumb-large").className = 'hidden';
+		location.href="product.html";
 		
-		document.getElementById("thumb-lens").style.left='0px'
-		document.getElementById("thumb-lens").style.top='0px'
-				
-		document.getElementById("btnCheckOut").style.visibility = 'hidden';
-		document.getElementById("btnContShopin").style.visibility = 'hidden';
-		document.getElementById("addedToCart").style.visibility = 'hidden';
-		document.getElementById("btnAddToCart").style.visibility = 'visible';		
+//		var imageSource = '/sans-img/images/'+ item.id + '.jpg'; 
+//		
+//		document.getElementById("thumb").src = imageSource;
+//		document.getElementById("thumb").setAttribute('data-large-img-url',imageSource);
+//		
+//		var evt = new Event();
+//		$scope.m = new Magnifier(evt);
+//	
+//		
+//		$scope.m.attach({
+//		    thumb: '#thumb',
+//		    large: '/sans-img/images/'+ item.id + '.jpg',
+//		    largeWrapper: 'preview',
+//		    zoom: 3
+//		});
+//		
+//		
+//		document.getElementById("thumb").className = '';
+//		
+//		if(document.getElementById("thumb-large") != null)
+//			document.getElementById("thumb-large").className = 'hidden';
+//		
+//		document.getElementById("thumb-lens").style.left='0px'
+//		document.getElementById("thumb-lens").style.top='0px'
+//				
+//		document.getElementById("btnCheckOut").style.visibility = 'hidden';
+//		document.getElementById("btnContShopin").style.visibility = 'hidden';
+//		document.getElementById("addedToCart").style.visibility = 'hidden';
+//		document.getElementById("btnAddToCart").style.visibility = 'visible';		
 		
-		
-        
         
 	}
+	
+	//On click of CheckOut pass the information to Server to place ORder
+	
+	$scope.checkout = function(token, args){
+		
+		alert("city:" +  args.shipping_address_city);
+		
+		var order = {
+                orderId: $scope.login.email,
+            	firstName: $scope.login.fname,
+            	lastName: $scope.login.lname,
+        		password: $scope.login.pass
+		};
+		
+		
+		$http({
+			   url : "/rest/users/checkout",
+			   method : "POST",
+			   data : JSON.stringify(user),
+			   headers : {
+			        "Content-Type" : "application/json; charset=utf-8",
+			        "Accept" : "application/json"
+			   }
+			}).success(function(response,status) {
+		           if(response == false){
+		       
+		        	   document.getElementById("login-error").style.display = 'block';
+		        	   
+		           }else{
+		        	   //TODO Change the menu Login to logout
+		         	   //TODO Store the email in cookies, so we can display account info when needed
+		        	   //TODO update the cart with user's products
+		        	   
+		        	   //hide error message
+		        	   document.getElementById("login-error").style.display = 'none';
+		        	   document.getElementById("menulogin").innerHTML = 'My Account';
+		        	   
+		        	   // close the window	
+		        	   location.href="#close";
+		        	   
+		           }
+		           
+		    }).error(function(data) {
+		        //TODO replace alert with better message   
+		    	document.getElementById("login-error").style.display = 'block';
+		    });
+		
+		
+	}
+	
+	
+	
+	
+	
+	
+	
+	
+	
 	
 	
 }]);

@@ -19,8 +19,7 @@
 <script type="text/javascript" src="js/magnifier/Event.js"></script>
 <script type="text/javascript" src="js/magnifier/Magnifier.js"></script>
 <script src="js/cart.js"></script>
-
-
+<script src="https://checkout.stripe.com/checkout.js"></script>
 
 <!-- Main CSS links -->
 <link rel="stylesheet" href="css/skel.css" />
@@ -30,18 +29,23 @@
 <link rel="stylesheet" href="css/magnifier.css">
 <link rel="stylesheet" href="css/header/header-menu.css">
 <link rel="stylesheet" href="css/header/header-fixed.css">
-<link href="http://fonts.googleapis.com/css?family=Cookie" rel="stylesheet" type="text/css">
+<link href="//fonts.googleapis.com/css?family=Cookie" rel="stylesheet"
+	type="text/css">
 
 <!--Links for login -->
-<link href='http://fonts.googleapis.com/css?family=Ropa+Sans' rel='stylesheet'>
-<link href="http://maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css" rel='stylesheet'>
-<link href='https://fonts.googleapis.com/css?family=Nunito' rel='stylesheet' type='text/css'>
+<link href='//fonts.googleapis.com/css?family=Ropa+Sans'
+	rel='stylesheet'>
+<link
+	href="//maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css"
+	rel='stylesheet'>
+<link href='//fonts.googleapis.com/css?family=Nunito' rel='stylesheet'
+	type='text/css'>
 
 
 </head>
 
 
-<body ng-app="sajApp" ng-controller="Products">
+<body id="cart-body" ng-app="sajApp" ng-controller="Products">
 
 	<script src="js/app.js"></script>
 	<script src="js/controllers.js"></script>
@@ -56,17 +60,26 @@
 			</h1>
 
 			<nav>
-				<a href="./">Home</a> <a href="#" style="text-align: center" onclick="window.open( 'https://www.facebook.com/sanskrithiweb', 'saj_facebook' )"><div style="background-color: #3D579D; width: auto; padding-left: 4px; padding-right: 4px; padding-top: 1px; padding-bottom: 1px; margin: 0px">facebook</div></a> <a id="menulogin" href="#loginPage">Login</a> <a href="#" style="text-align: center" onclick="window.open( 'https://www.facebook.com/sanskrithiweb', 'saj_facebook' )"><a href="#" ng-click="checkout()">
-						<div style="position: relative; padding-top: 8px; padding-right: 10px">
-							<div style="border-radius: 50%; background: red; position: absolute; float: right; width: 25px; height: 25px; right: 0px; top: 0px">{{cart.items.length}}</div>
-							<div style="width: auto; padding-left: 4px; padding-right: 4px; padding-top: 1px; padding-bottom: 0px; margin: 0px; positon: absolute">
-								Cart&nbsp;<img src="./images/cart.png" style="margin: 0px; padding: 0px; padding-bottom: 1px; vertical-align: bottom;" />
+				<a href="./">Home</a> <a href="#" style="text-align: center"
+					onclick="window.open( 'https://www.facebook.com/sanskrithiweb', 'saj_facebook' )"><div
+						style="background-color: #3D579D; width: auto; padding-left: 4px; padding-right: 4px; padding-top: 1px; padding-bottom: 1px; margin: 0px">facebook</div></a>
+				<a href="#" style="text-align: center"
+					onclick="window.open( 'https://www.facebook.com/sanskrithiweb', 'saj_facebook' )"><a
+					href="#" ng-click="checkoutPage()">
+						<div
+							style="position: relative; padding-top: 8px; padding-right: 10px">
+							<div
+								style="border-radius: 50%; background: red; position: absolute; float: right; width: 25px; height: 25px; right: 0px; top: 0px">{{cart.items.length}}</div>
+							<div
+								style="width: auto; padding-left: 4px; padding-right: 4px; padding-top: 1px; padding-bottom: 0px; margin: 0px; positon: absolute">
+								Cart&nbsp;<img src="./images/cart.png"
+									style="margin: 0px; padding: 0px; padding-bottom: 1px; vertical-align: bottom;" />
 							</div>
 						</div>
 				</a>
 			</nav>
 		</div>
-		
+
 	</header>
 
 
@@ -76,32 +89,103 @@
 	<nav id="nav">
 		<div id="mobContactUs">
 			<h4>Contact Us</h4>
-			<a href="tel:+14025770055">402-577-0055</a><br /> <a href="mailto:sowjanya.datla@gmail.com">sowjanya.datla@gmail.com</a>
+			<a href="tel:+14025770055">402-577-0055</a><br /> <a
+				href="mailto:sowjanya.datla@gmail.com">sowjanya.datla@gmail.com</a>
 		</div>
 	</nav>
 
-	<div id="header" class="container" style="position: absolute; padding: 10px">
-		<!-- 
-		<div id="tabs" style="float: left" ng-init="type='$ER'">
-			<input id="tab-1" type="radio" value="$ER" name="tab-group" ng-model="type" ng-checked="true" /> <label for="tab-1">Earrings</label> <input id="tab-6" type="radio" value="$NE" name="tab-group" ng-model="type" /> <label for="tab-6">Necklace</label> <input id="tab-3" type="radio" value="$BA" name="tab-group" ng-model="type" /> <label for="tab-3">Bangles</label> <input id="tab-4" type="radio" value="$BR" name="tab-group" ng-model="type" /> <label for="tab-4">Bracelets</label><input id="tab-5" type="radio" value="$AN" name="tab-group" ng-model="type" /> <label for="tab-4">Anklet</label>
+	<div id="header" class="container"
+		style="position: absolute; padding: 10px">
+		
+	</div>
+
+
+
+
+
+
+	<div id="shopping-cart" class="shopping-cart" ng-cloak>
+
+		<TABLE>
+			<TR class="cart-columns">
+				<td class="product-image"></td>
+				<td class="product-details"></td>
+				<td class="product-price">Price</td>
+				<td class="product-quantity">Quantity</td>
+				<td class="product-line-price">Total</td>
+
+			</TR>
+
+			<TR class="product" ng-repeat="item in cart.items">
+				<td class="product-image"><img src="/sans-img/images/{{item.product.id}}.jpg" style="cursor:pointer" ng-click="setViewProduct(item.product)"></td>
+				<td class="product-details">
+					<p class="product-description">
+						{{item.product.name}} <br /> {{item.product.desc}} <br /> Size:
+						{{item.product.size}}, {{item.product.sizeDesc}}
+					</p>
+					<button class="remove-product" ng-click="removeFromCart(item)">Remove</button>
+				</td>
+				<td class="product-price">${{item.product.finalPrice}}</td>
+				<td class="product-quantity">
+					<input ng-model="item.quantity" ng-change="updateItemInCart(item)" type="number"value="{{item.quantity}}" min="1" max="1">
+				</td>
+				<td class="product-line-price">${{item.subtotal}}</td>
+
+			</TR>
+
+		</TABLE>
+
+
+		<div class="totals">
+			<div class="totals-item">
+				<label>Subtotal</label>
+				<div class="totals-value" id="cart-subtotal">{{item.subtotal}}</div>
+			</div>
 		</div>
 
-		<div id="mobileTabs">
-			<label for="selType">Model:</label> <select ng-model="type" id="selType">
-				<option value="$ER" selected="selected">Earrings</option>
-				<option value="$NE">Necklace</option>
-				<option value="$BA">Bangles</option>
-				<option value="$BR">Bracelets</option>
-				<option value="$AN">Anklet</option>
-			</select>
-		</div>
-		<br /> <br />
- 		-->
+		<button id="customButton" class="checkout">Checkout</button>
 
 
 
 
-		<!-- *******************  Add to Cart - Popup Window ****************************************************************************************-->
+
+		<script>
+			var handler = StripeCheckout.configure({
+				key : 'pk_test_Czv4XTjHXpT6d5594VhrzKZq',
+				image : 'images/logo.png',
+				locale : 'auto',
+				token : function(token, args) {
+
+					var scope = angular.element(
+							document.getElementById("cart-body")).scope();
+
+					scope.checkout(token, args);
+				}
+			});
+
+			document.getElementById('customButton').addEventListener('click',
+					function(e) {
+						// Open Checkout with further options:
+						handler.open({
+							name : 'Sanskrithi',
+							description : 'Jewelry Store',
+							amount : 2000,
+							shippingAddress : true,
+							billingAddress : true
+						});
+						e.preventDefault();
+					});
+
+			// Close Checkout on page navigation:
+			window.addEventListener('popstate', function() {
+				handler.close();
+			});
+		</script>
+
+
+	</div>
+
+
 
 		<div id="openModal" class="modalDialog">
 
@@ -129,7 +213,7 @@
 								<br />
 								<br />
 								<a href="#openModal" class="btn" id="btnAddToCart" ng-click="addToCart(viewProduct)">Add to Bag</a> <br />
-								<a href="#" class="btn" id="btnCheckOut" style="visibility: hidden" ng-click="checkout()">Check Out</a> <a href="#" class="btn" id="btnContShopin" style="visibility: hidden" ng-click="exitModalDialog()">Continue Shopping</a> </any>
+								<a href="#" class="btn" id="btnCheckOut" style="visibility: hidden" ng-click="checkoutPage()">Check Out</a> <a href="#" class="btn" id="btnContShopin" style="visibility: hidden" ng-click="exitModalDialog()">Continue Shopping</a> </any>
 								<br />
 
 								<any ng-if="viewProduct.discount != 0"> <font class="dressDescModel">{{viewProduct.name}}, ${{viewProduct.finalPrice}}</font> <br />
@@ -143,7 +227,7 @@
 								<font class="salePriceModel">New Price: ${{viewProduct.finalPrice}}</font> <br />
 								<br />
 								<a href="#openModal" class="btn" id="btnAddToCart" ng-click="addToCart(viewProduct)">Add to Bag</a> <br />
-								<a href="#" class="btn" id="btnCheckOut" style="visibility: hidden" ng-click="checkout()">Check Out</a> <a href="#" class="btn" id="btnContShopin" style="visibility: hidden" ng-click="exitModalDialog()">Continue Shopping</a> </any>
+								<a href="cart.html" class="btn" id="btnCheckOut" style="visibility: hidden">Check Out</a> <a href="#" class="btn" id="btnContShopin" style="visibility: hidden" ng-click="exitModalDialog()">Continue Shopping</a> </any>
 
 							</div>
 
@@ -156,131 +240,6 @@
 		</div>
 
 	</div>
-
-
-
-
-
-	<div id="shopping-cart" class="shopping-cart" ng-cloak>
-
-		<TABLE>
-			<TR class="cart-columns">
-				<td class="product-image"></td>
-				<td class="product-details"></td>
-				<td class="product-price">Price</td>
-				<td class="product-quantity">Quantity</td>
-				<td class="product-line-price">Total</td>
-
-			</TR>
-			
-			<TR class="product" ng-repeat="item in cart.items">
-				<td class="product-image"><img src="/sans-img/images/{{item.product.id}}.jpg"></td>
-				<td class="product-details">
-					<p class="product-description">
-						{{item.product.name}} <br /> {{item.product.desc}} <br /> Size: {{item.product.size}}, {{item.product.sizeDesc}}
-					</p>
-					<button class="remove-product" ng-click="removeFromCart(item)">Remove</button>
-				</td>
-				<td class="product-price">${{item.product.finalPrice}}</td>
-				<td class="product-quantity"><input ng-model="item.quantity" ng-change="updateItemInCart(item)" type="number" value="{{item.quantity}}" min="1" max="1"></td>
-
-				<td class="product-line-price">${{item.subtotal}}</td>
-				
-			</TR>
-				
-		</TABLE>
-
-
-		<div class="totals">
-			<div class="totals-item">
-				<label>Subtotal</label>
-				<div class="totals-value" id="cart-subtotal">71.97</div>
-			</div>
-		</div>
-
-		<button class="checkout">Checkout</button>
-
-	</div>
-
-
-
-
-	<div id="loginPage" class="modalDialog" style="z-index: 1;">
-
-		<div>
-			<a href="#close" title="Close" class="close">X</a>
-			<div id="login-form">
-
-				<input type="radio" checked id="login" name="switch" class="hide"> <input type="radio" id="signup" name="switch" class="hide">
-
-				<div>
-					<ul class="login-form-header">
-						<li><label for="login"><i class="fa fa-lock"></i> LOGIN<label for="login"></li>
-						<li><label for="signup"><i class="fa fa-credit-card"></i> REGISTER</label></li>
-					</ul>
-				</div>
-
-				<div class="login-section-out">
-
-					<section class="login-section">
-						<div class="login">
-
-							<div id="login-error" class="alert-box error" style="display: none">
-								<span>error: </span>Invalid EMail or Password!
-							</div>
-
-							<form ng-submit="login()">
-								<ul class="login-ul-list">
-									<li><input type="email" ng-model="login.email" required class="login-input" placeholder="Your Email" /><span class="icon"><i class="fa fa-user"></i></span></li>
-									<li><input type="password" ng-model="login.pass" required class="login-input" placeholder="Password" /><span class="icon"><i class="fa fa-lock"></i></span></li>
-									<li><span class="remember"><input type="checkbox" id="login-check" ng-model="login.save"> <label for="login-check">Remember Me</label></span><span class="remember"><a href="">Forgot Password</a></span></li>
-									<li><input type="submit" value="SIGN IN" class="login-button"></li>
-								</ul>
-							</form>
-						</div>
-
-						<div class="social-login">
-							<fb:login-button scope="public_profile,email" onlogin="checkLoginState();"></fb:login-button>
-							<div id="status"></div>
-							<!--
-								Or sign in with &nbsp; <a href="" class="fb"><i class="fa fa-facebook"></i></a> 
-									<a href="" class="tw"><i class="fa fa-twitter"></i></a> <a href="" class="gp"><i class="fa fa-google-plus"></i></a> <a href="" class="in"><i class="fa fa-linkedin"></i></a>
-							 -->
-						</div>
-					</section>
-
-					<section class="signup-section">
-						<div class="login">
-
-							<div id="signup-error" class="alert-box error" style="display: none">
-								<span>Error: </span>Please contact sowji@sanskrithi.us
-							</div>
-
-							<form ng-submit="signup()">
-								<ul class="login-ul-list">
-									<li><input type="email" ng-model="login.email" required class="login-input" placeholder="Your Email" /><span class="icon"><i class="fa fa-user"></i></span></li>
-									<li><input type="text" ng-model="login.fname" required class="login-input" placeholder="Your Firstname" /><span class="icon"><i class="fa fa-info"></i></span></li>
-									<li><input type="text" ng-model="login.lname" required class="login-input" placeholder="Your Lastname" /><span class="icon"><i class="fa fa-info"></i></span></li>
-									<li><input type="password" ng-model="login.pass" required class="login-input" placeholder="Password" /><span class="icon"><i class="fa fa-lock"></i></span></li>
-									<li><input type="checkbox" required id="login-check1"> <label for="login-check1">I accept terms and conditions</label></li>
-									<li><input type="submit" value="SIGN UP" class="login-button"></li>
-								</ul>
-							</form>
-						</div>
-
-						<div class="social-login">
-							Or sign up with &nbsp; <a href="" class="login-fb"><i class="fa fa-facebook"></i></a>
-							<!-- 
-												 <a href="" class="tw"><i class="fa fa-twitter"></i></a> <a href="" class="gp"><i class="fa fa-google-plus"></i></a> <a href="" class="in"><i class="fa fa-linkedin"></i></a>
-												 -->
-						</div>
-					</section>
-				</div>
-
-			</div>
-		</div>
-	</div>
-
 
 
 
@@ -314,20 +273,7 @@
 	</script>
 
 	<script src="js/filters/main.js"></script>
-	
-	<!--  -->
-		
-	<form action="/your-charge-code" method="POST">
-	  <script
-	    src="https://checkout.stripe.com/checkout.js" class="stripe-button"
-	    data-key="pk_test_Czv4XTjHXpT6d5594VhrzKZq"
-	    data-amount="999"
-	    data-name="Demo Site"
-	    data-description="Widget"
-	    data-image="/img/documentation/checkout/marketplace.png"
-	    data-locale="auto">
-	  </script>
-	</form>
-	
+
+
 </body>
 </html>
