@@ -1,9 +1,4 @@
 <!DOCTYPE HTML>
-<!--
-	Verti by HTML5 UP
-	html5up.net | @n33co
-	Free for personal and commercial use under the CCA 3.0 license (html5up.net/license)
--->
 <html>
 <head>
 <title>Sanskriti</title>
@@ -14,14 +9,10 @@
 <script src="js/jquery.min.js"></script>
 <script src="js/jquery.dropotron.min.js"></script>
 <script src="js/skel.min.js"></script>
-
 <script src="js/init.js"></script>
 <script src="lib/angular/angular.js"></script>
 <script src="lib/angular/angular-cookies.js"></script>
 <script src="js/cart.js"></script>
-
-
-
 <!-- Main CSS links -->
 <link rel="stylesheet" href="css/skel.css" />
 <link rel="stylesheet" href="css/style.css" />
@@ -30,11 +21,8 @@
 <link rel="stylesheet" href="css/header/header-menu.css">
 <link rel="stylesheet" href="css/header/header-fixed.css">
 <link href="//fonts.googleapis.com/css?family=Cookie" rel="stylesheet" type="text/css">
-
 <!--Links for login -->
-<link href='http://fonts.googleapis.com/css?family=Ropa+Sans' rel='stylesheet'>
 <link href="http://maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css" rel='stylesheet'>
-
 <!-- Filters -->
 <link href='http://fonts.googleapis.com/css?family=Open+Sans:400,300,600,700' rel='stylesheet' type='text/css'>
 <link rel="stylesheet" href="css/filters/reset.css">
@@ -54,39 +42,42 @@
 
 		<div class="header-limiter" ng-cloak>
 
-			<h1>
-				<a href="#">Sanskrithi Jewelry</a>
-			</h1>
+			<div class="header-left">
+				FREE SHIPPING & RETURNS
+			</div>
+			
 
-			<nav>
-				<a href="./">Home</a> 
-				
-				
-				<span style="background-color: #3D579D; width: auto; padding-left: 4px; padding-right: 4px; padding-top: 1px; padding-bottom: 1px; margin: 0px">
-					<a href="#" style="text-align: center" onclick="window.open( 'https://www.facebook.com/sanskrithiweb', 'saj_facebook' )">facebook</a> 
-				</span>
-				
-				
-				<a href="cart.html" >
-					<div style="position: relative; padding-top: 8px; padding-right: 10px">
-						<div style="border-radius: 50%; background: red; position: absolute; float: right; width: 25px; height: 25px; right: 0px; top: 0px">{{cart.items.length}}</div>
-						<div style="width: auto; padding-left: 4px; padding-right: 4px; padding-top: 1px; padding-bottom: 0px; margin: 0px; positon: absolute">
-							Cart&nbsp;<img src="./images/cart.png" style="margin: 0px; padding: 0px; padding-bottom: 1px; vertical-align: bottom;" />
+			<div class="header-title">Sanskrithi</div>
+
+			<div class="header-right">
+				<nav>
+					<a href="./" style="color:black">LOGIN</a> 
+					 
+					<a href="#" style="text-align: center" onclick="window.open( 'https://www.facebook.com/sanskrithiweb', 'saj_facebook' )">
+						<img src="./images/facebook-icon.png" style="margin: 0px; padding: 0px; padding-bottom: 1px; vertical-align: bottom;" />
+					</a>
+					 
+					<a href="cart.html">
+						<div style="position: relative; padding-top: 4px; padding-right:5px">
+							<div style="border-radius: 50%; background: red; position: absolute; float: right; width: 1.5em; height: 1.5em; right: 0px; top: 0px; padding-top:0.25em">{{cart.items.length}}</div>
+							<div style="width: auto; padding-left: 4px; padding-right: 4px; padding-top: 1px; padding-bottom: 0px; margin: 0px; positon: absolute; color:#FF1493">
+								SHOPPING BAG&nbsp;<img src="./images/cart.png" style="margin: 0px; padding: 0px; padding-bottom: 1px; vertical-align: bottom;" />
+							</div>
 						</div>
-					</div>
-				</a>
-			</nav>
+					</a>
+				</nav>
+			</div>
 		</div>
-		
-	</header>
 
-<div style="clear:both">
-		<main class="cd-main-content">
+
+
+		<div style="margin-top:1em">
+			<main class="cd-main-content">
 			<div class="cd-tab-filter-wrapper">
 				<div class="cd-tab-filter">
 					<ul class="cd-filters">
 						<li class="placeholder"><a data-type="ER" href="#0">Earings</a> <!-- selected option on mobile --></li>
-						<li class="filter"><a  ng-class="{selected: isActive('ER')}" id="ft-er" href="#/ER" ng-click="setFilterType('ER')">Earings</a></li>
+						<li class="filter"><a ng-class="{selected: isActive('ER')}" id="ft-er" href="#/ER" ng-click="setFilterType('ER')">Earings</a></li>
 						<li class="filter"><a ng-class="{selected: isActive('NE')}" href="#/NE" ng-click="setFilterType('NE')">Necklace</a></li>
 						<li class="filter"><a ng-class="{selected: isActive('AN')}" href="#/AN" ng-click="setFilterType('AN')">Anklets</a></li>
 						<li class="filter"><a ng-class="{selected: isActive('BA')}" href="#/BA" ng-click="setFilterType('BA')">Bangles</a></li>
@@ -96,47 +87,11 @@
 				</div>
 				<!-- cd-tab-filter -->
 			</div>
-			<!-- cd-tab-filter-wrapper -->
 
-			<section class="cd-gallery">
-	
-				<!-- ************************************** Product list *********************************************************************************** -->
-				<div id="features-wrapper" ng-cloak>
-					<div class="container">
-						<div class="row">
-							<div class="2u" ng-repeat="product in products | filter:type">
-								<section class="box feature">
-	
-									<div style="line-height: 1.0; overflow: hidden">
-										<a href="#openModal" class="image featured" ng-click="setViewProduct(product)"> <img src="/sans-img/images/{{product.id}}.jpg" alt="Sanskrithi" />
-	
-	
-											<div class="box feature inner">
-												<font class="dressDesc">{{product.name}}</font><br />
-												<div ng-if="product.discount == 0">
-													<font class="price">${{product.finalPrice}}</font><br />
-												</div>
-												<div ng-if="product.discount != 0">
-													<font class="oldPrice" style="line-height: 1.0">${{product.price}}</font><font class="salePrice">&nbsp;&nbsp;&nbsp;${{product.finalPrice}}</font><br />
-												</div>
-	
-												<a href="#openModal" class="btn" ng-click="setviewProduct(product)">Add to Bag</a>
-											</div>
-										</a>
-									</div>
-								</section>
-							</div>
-						</div>
-					</div>
-				</div>
-	
-				<div class="cd-fail-message">No results found</div>
-			</section>
-			<!-- cd-gallery -->
 
 			<div class="cd-filter">
-				<form ng-submit="filterSubmit()">
-				
+				<form ng-submit="filterSubmit()" style="background:white">
+
 					<!-- 
 					<div class="cd-filter-block">
 						<h4>Search</h4>
@@ -146,67 +101,79 @@
 						</div>
 						
 					</div>
-					
 					 -->
-	
 					<div class="cd-filter-block" data-ng-init="filter.type=ER">
 						<h4>Jewelry Type</h4>
-	
+
 						<ul class="cd-filter-content cd-filters list">
-							<li><input id="ER" class="filter" type="radio" ng-model="filter.type" value="ER"/><label for="ER" class="radio-label">Earings</label></li>
-	
-							<li> <input id="NE" class="filter" type="radio" ng-model="filter.type" value="NE"/><label for="NE" class="radio-label">Necklace</label></li>
-	
-							<li><input id="AN" class="filter" type="radio" ng-model="filter.type" value="AN"/><label for="AN" class="radio-label">Anklets</label></li>
-							
-							<li> <input id="BA" class="filter" type="radio" ng-model="filter.type" value="BA"/><label for="BA" class="radio-label">Bangles</label></li>
-							
-							<li> <input id="BR" class="filter" type="radio"  ng-model="filter.type" value="BR"/><label for="BR" class="radio-label">Bracelets</label></li>
+							<li><input id="ER" class="filter" type="radio" ng-model="filter.type" value="ER" /><label for="ER" class="radio-label">Earings</label></li>
+							<li><input id="NE" class="filter" type="radio" ng-model="filter.type" value="NE" /><label for="NE" class="radio-label">Necklace</label></li>
+							<li><input id="AN" class="filter" type="radio" ng-model="filter.type" value="AN" /><label for="AN" class="radio-label">Anklets</label></li>
+							<li><input id="BA" class="filter" type="radio" ng-model="filter.type" value="BA" /><label for="BA" class="radio-label">Bangles</label></li>
+							<li><input id="BR" class="filter" type="radio" ng-model="filter.type" value="BR" /><label for="BR" class="radio-label">Bracelets</label></li>
 						</ul>
 						<!-- cd-filter-content -->
 					</div>
-
-		
 					<div class="cd-filter-block">
 						<h4>Size</h4>
-	
 						<ul class="cd-filter-content cd-filters list">
-							<li><input id="checkbox1" class="filter"  type="checkbox" ng-model="filter.size.small"  ng-value="S" checked> <label class="checkbox-label" for="checkbox1">Small</label></li>
-	
-							<li><input id="checkbox2" class="filter"  type="checkbox" ng-model="filter.size.medium" ng-value="M" checked> <label class="checkbox-label" for="checkbox2">Medium</label></li>
-	
-							<li><input id="checkbox3" class="filter"  type="checkbox" ng-model="filter.size.large" ng-value="L" checked> <label class="checkbox-label" for="checkbox3">Large</label></li>
-							
+							<li><input id="checkbox1" class="filter" type="checkbox" ng-model="filter.size.small" ng-value="S" checked> <label class="checkbox-label" for="checkbox1">Small</label></li>
+							<li><input id="checkbox2" class="filter" type="checkbox" ng-model="filter.size.medium" ng-value="M" checked> <label class="checkbox-label" for="checkbox2">Medium</label></li>
+							<li><input id="checkbox3" class="filter" type="checkbox" ng-model="filter.size.large" ng-value="L" checked> <label class="checkbox-label" for="checkbox3">Large</label></li>
 						</ul>
-						<!-- cd-filter-content -->
 					</div>
-					
-
-
 					<div class="cd-filter-block">
 						<h4>Price</h4>
-	
 						<ul class="cd-filter-content cd-filters list">
-						
 							<li><input id="price0" class="filter" type="checkbox" ng-model="filter.price.dis" ng-value="0" checked> <label class="checkbox-label" for="price0">Sale Items Only</label></li>
-						
 							<li><input id="price1" class="filter" type="checkbox" ng-model="filter.price.low" ng-value="1" checked> <label class="checkbox-label" for="price1">Below $10</label></li>
-	
-							<li><input id="price2" class="filter" type="checkbox" ng-model="filter.price.med"  ng-value="2" checked> <label class="checkbox-label" for="price2">$10 - $50</label></li>
-	
-							<li><input id="price3" class="filter" type="checkbox" ng-model="filter.price.high"  ng-value="3" checked> <label class="checkbox-label" for="price3">$50 or more </label></li>
-							
+							<li><input id="price2" class="filter" type="checkbox" ng-model="filter.price.med" ng-value="2" checked> <label class="checkbox-label" for="price2">$10 - $50</label></li>
+							<li><input id="price3" class="filter" type="checkbox" ng-model="filter.price.high" ng-value="3" checked> <label class="checkbox-label" for="price3">$50 or more </label></li>
 						</ul>
-					</div>				
-
-
+					</div>
 				</form>
-	
+
 				<a href="#0" class="cd-close">Close</a>
 			</div>
-		 	<a href="#0" class="cd-filter-trigger">Filters</a> 
-		</main>		
-	</div>
+			<a href="#0" class="cd-filter-trigger">Filters</a> </main>
+		</div>
+
+	</header>
+
+	<!-- cd-tab-filter-wrapper -->
+	<section class="cd-gallery">
+
+		<!-- ************************************** Product list *********************************************************************************** -->
+		<div id="features-wrapper" ng-cloak>
+			<div class="container">
+				<div class="row">
+					<div class="2u" ng-repeat="product in products | filter:type">
+						<section class="box feature">
+
+							<div style="line-height: 1.0; overflow: hidden">
+								<a href="#openModal" class="image featured" ng-click="setViewProduct(product)"> <img src="/sans-img/images/{{product.id}}.jpg" alt="Sanskrithi" />
+									<div class="box feature inner">
+										<font class="dressDesc">{{product.name}}</font><br />
+										<div ng-if="product.discount == 0">
+											<font class="price">${{product.finalPrice}}</font><br />
+										</div>
+										<div ng-if="product.discount != 0">
+											<font class="oldPrice" style="line-height: 1.0">${{product.price}}</font><font class="salePrice">&nbsp;&nbsp;&nbsp;${{product.finalPrice}}</font><br />
+										</div>
+										
+									</div>
+								</a>
+							</div>
+						</section>
+					</div>
+				</div>
+			</div>
+		</div>
+
+		<div class="cd-fail-message">No results found</div>
+	</section>
+	<!-- cd-gallery -->
+
 
 
 	<div class="header-fixed-placeholder"></div>
@@ -219,108 +186,7 @@
 		</div>
 	</nav>
 
-	<div id="header" class="container" style="position: absolute; padding: 10px"> </div>
-		<!-- 
-		<div id="tabs" style="float: left" ng-init="type='$ER'">
-			<input id="tab-1" type="radio" value="$ER" name="tab-group" ng-model="type" ng-checked="true" /> <label for="tab-1">Earrings</label> <input id="tab-6" type="radio" value="$NE" name="tab-group" ng-model="type" /> <label for="tab-6">Necklace</label> <input id="tab-3" type="radio" value="$BA" name="tab-group" ng-model="type" /> <label for="tab-3">Bangles</label> <input id="tab-4" type="radio" value="$BR" name="tab-group" ng-model="type" /> <label for="tab-4">Bracelets</label><input id="tab-5" type="radio" value="$AN" name="tab-group" ng-model="type" /> <label for="tab-4">Anklet</label>
-		</div>
-
-		<div id="mobileTabs">
-			<label for="selType">Model:</label> <select ng-model="type" id="selType">
-				<option value="$ER" selected="selected">Earrings</option>
-				<option value="$NE">Necklace</option>
-				<option value="$BA">Bangles</option>
-				<option value="$BR">Bracelets</option>
-				<option value="$AN">Anklet</option>
-			</select>
-		</div>
-		<br /> <br />
- 		-->
-
-
-
-
-	<div id="loginPage" class="modalDialog" style="z-index: 1;">
-
-		<div>
-			<a href="#close" title="Close" class="close">X</a>
-			<div id="login-form">
-
-				<input type="radio" checked id="login" name="switch" class="hide"> <input type="radio" id="signup" name="switch" class="hide">
-
-				<div>
-					<ul class="login-form-header">
-						<li><label for="login"><i class="fa fa-lock"></i> LOGIN</label></li>
-						<li><label for="signup"><i class="fa fa-credit-card"></i> REGISTER</label></li>
-					</ul>
-				</div>
-
-				<div class="login-section-out">
-
-					<section class="login-section">
-						<div class="login">
-
-							<div id="login-error" class="alert-box error" style="display: none">
-								<span>error: </span>Invalid EMail or Password!
-							</div>
-
-							<form ng-submit="login()">
-								<ul class="login-ul-list">
-									<li><input type="email" ng-model="login.email" required class="login-input" placeholder="Your Email" /><span class="icon"><i class="fa fa-user"></i></span></li>
-									<li><input type="password" ng-model="login.pass" required class="login-input" placeholder="Password" /><span class="icon"><i class="fa fa-lock"></i></span></li>
-									<li><span class="remember"><input type="checkbox" id="login-check" ng-model="login.save"> <label for="login-check">Remember Me</label></span><span class="remember"><a href="">Forgot Password</a></span></li>
-									<li><input type="submit" value="SIGN IN" class="login-button"></li>
-								</ul>
-							</form>
-						</div>
-
-						<div class="social-login">
-							<fb:login-button scope="public_profile,email" onlogin="checkLoginState();"></fb:login-button>
-							<div id="status"></div>
-
-
-							<!--
-												
-												Or sign in with &nbsp; <a href="" class="fb"><i class="fa fa-facebook"></i></a> 
-													<a href="" class="tw"><i class="fa fa-twitter"></i></a> <a href="" class="gp"><i class="fa fa-google-plus"></i></a> <a href="" class="in"><i class="fa fa-linkedin"></i></a>
-												 -->
-						</div>
-					</section>
-
-					<section class="signup-section">
-						<div class="login">
-
-							<div id="signup-error" class="alert-box error" style="display: none">
-								<span>Error: </span>Please contact sowji@sanskrithi.us
-							</div>
-
-							<form ng-submit="signup()">
-								<ul class="login-ul-list">
-									<li><input type="email" ng-model="login.email" required class="login-input" placeholder="Your Email" /><span class="icon"><i class="fa fa-user"></i></span></li>
-									<li><input type="text" ng-model="login.fname" required class="login-input" placeholder="Your Firstname" /><span class="icon"><i class="fa fa-info"></i></span></li>
-									<li><input type="text" ng-model="login.lname" required class="login-input" placeholder="Your Lastname" /><span class="icon"><i class="fa fa-info"></i></span></li>
-									<li><input type="password" ng-model="login.pass" required class="login-input" placeholder="Password" /><span class="icon"><i class="fa fa-lock"></i></span></li>
-									<li><input type="checkbox" required id="login-check1"> <label for="login-check1">I accept terms and conditions</label></li>
-									<li><input type="submit" value="SIGN UP" class="login-button"></li>
-								</ul>
-							</form>
-						</div>
-
-						<div class="social-login">
-							Or sign up with &nbsp; <a href="" class="login-fb"><i class="fa fa-facebook"></i></a>
-							<!-- 
-												 <a href="" class="tw"><i class="fa fa-twitter"></i></a> <a href="" class="gp"><i class="fa fa-google-plus"></i></a> <a href="" class="in"><i class="fa fa-linkedin"></i></a>
-												 -->
-						</div>
-					</section>
-				</div>
-
-			</div>
-		</div>
-	</div>
-
-
-
+	<div id="header" class="container" style="position: absolute; padding: 10px"></div>
 
 	<script>
 		// To keep the header stick to the top
@@ -349,14 +215,12 @@
 			}
 
 		});
-		
-		function initBody(){
-		
-			document.getElementById("ER").click();	
-		
+
+		function initBody() {
+
+			document.getElementById("ER").click();
+
 		}
-		
-		
 	</script>
 
 	<script src="js/filters/main.js"></script>

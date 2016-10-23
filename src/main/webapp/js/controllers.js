@@ -26,9 +26,7 @@ app.controller("Products", ['$scope','$http','$cookies', function($scope, $http,
 	
 	//initalize type to earings. Not sure why its not working	
 	$scope.filter = {type:'ER'};
-	
 	$scope.filter.size = {small:true, medium:true, large:true};
-	
 	$scope.filter.price = {low:true, med:true, high:true};
 	
 	
@@ -490,9 +488,6 @@ app.controller("Products", ['$scope','$http','$cookies', function($scope, $http,
 	
 	/*********************************** Product page Functionality **********************************************/
 	
-
-	
-	
 	try{
 		$scope.viewProduct = $cookies.getObject('viewProduct');
 	}catch(e){
@@ -505,43 +500,8 @@ app.controller("Products", ['$scope','$http','$cookies', function($scope, $http,
 	$scope.setViewProduct= function(item){
 		
 		// Initialize view Product Window
-		
 		$cookies.putObject('viewProduct', item);
-		
-		
-		
 		location.href="product.html";
-		
-//		var imageSource = '/sans-img/images/'+ item.id + '.jpg'; 
-//		
-//		document.getElementById("thumb").src = imageSource;
-//		document.getElementById("thumb").setAttribute('data-large-img-url',imageSource);
-//		
-//		var evt = new Event();
-//		$scope.m = new Magnifier(evt);
-//	
-//		
-//		$scope.m.attach({
-//		    thumb: '#thumb',
-//		    large: '/sans-img/images/'+ item.id + '.jpg',
-//		    largeWrapper: 'preview',
-//		    zoom: 3
-//		});
-//		
-//		
-//		document.getElementById("thumb").className = '';
-//		
-//		if(document.getElementById("thumb-large") != null)
-//			document.getElementById("thumb-large").className = 'hidden';
-//		
-//		document.getElementById("thumb-lens").style.left='0px'
-//		document.getElementById("thumb-lens").style.top='0px'
-//				
-//		document.getElementById("btnCheckOut").style.visibility = 'hidden';
-//		document.getElementById("btnContShopin").style.visibility = 'hidden';
-//		document.getElementById("addedToCart").style.visibility = 'hidden';
-//		document.getElementById("btnAddToCart").style.visibility = 'visible';		
-		
         
 	}
 	

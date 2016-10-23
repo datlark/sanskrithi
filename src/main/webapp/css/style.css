@@ -6,17 +6,22 @@
 	url("http://fonts.googleapis.com/css?family=Oleo+Script:400|Open+Sans:300,300italic,600,600italic,800")
 	;
 
-/*
-	Verti by HTML5 UP
-	html5up.net | @n33co
-	Free for personal and commercial use under the CCA 3.0 license (html5up.net/license)
-*/
 
 /*********************************************************************************/
 /* Basic                                                                         */
 /*********************************************************************************/
+
+html * {
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+
 body {
-	background-color: #D9E2E1;
+	font-size: 1.6rem;
+  	font-family: "Open Sans", sans-serif;
+  	color: #331d35;
+	background-color: white;
 	background-position: top left, top left;
 	background-repeat: repeat-x, repeat;
 	background-size: 100% 30em, auto;
@@ -27,18 +32,6 @@ body {
 	margin-bottom: 0;
 }
 
-body.is-loading * {
-	-moz-transition: none !important;
-	-webkit-transition: none !important;
-	-o-transition: none !important;
-	-ms-transition: none !important;
-	transition: none !important;
-	-moz-animation: none !important;
-	-webkit-animation: none !important;
-	-o-animation: none !important;
-	-ms-animation: none !important;
-	animation: none !important;
-}
 
 body, input, select, textarea {
 	font-family: 'Open Sans', sans-serif;
