@@ -1,0 +1,99 @@
+<!DOCTYPE HTML>
+<!--
+	Verti by HTML5 UP
+	html5up.net | @n33co
+	Free for personal and commercial use under the CCA 3.0 license (html5up.net/license)
+-->
+<html>
+<head>
+<title>Sanskriti</title>
+<meta http-equiv="content-type" content="text/html; charset=utf-8" />
+<meta name="description" content="Indian Apparel and Jewelry" />
+<meta name="keywords" content="Desi, Indian, Apparel, Womens, Women, Kurthis, Tops, Dress, Anarkali, Jewelry" />
+<!--[if lte IE 8]><script src="css/ie/html5shiv.js"></script><![endif]-->
+<script src="js/jquery.min.js"></script>
+<script src="js/jquery.dropotron.min.js"></script>
+<script src="js/skel.min.js"></script>
+<script src="js/init.js"></script>
+<script src="lib/angular/angular.js"></script>
+<script src="lib/angular/angular-cookies.js"></script>
+<script src="js/cart.js"></script>
+
+
+<!-- Main CSS links -->
+<link rel="stylesheet" href="css/skel.css" />
+<link rel="stylesheet" href="css/style.css" />
+<link rel="stylesheet" href="css/cart.css" />
+<link rel="stylesheet" href="css/style-desktop.css" />
+<link rel="stylesheet" href="css/header/header-menu.css">
+<link rel="stylesheet" href="css/header/header-fixed.css">
+<link href="//fonts.googleapis.com/css?family=Cookie" rel="stylesheet" type="text/css">
+
+<!-- Filters -->
+<link href='http://fonts.googleapis.com/css?family=Open+Sans:400,300,600,700' rel='stylesheet' type='text/css'>
+<link rel="stylesheet" href="css/filters/reset.css">
+<link rel="stylesheet" href="css/filters/style.css">
+
+<!-- Magnifier -->
+<link rel="stylesheet" href="css/etalage.css">
+<script src="js/magnifier/jquery.etalage.min.js"></script>
+
+
+
+
+</head>
+
+
+<body ng-app="sajApp" ng-controller="Products">
+
+
+
+	<script src="js/app.js"></script>
+	<script src="js/controllers.js"></script>
+
+	<header class="header-fixed">
+		<div class="header-limiter" ng-cloak>
+			<h1>
+				<a href="#">Sanskrithi Jewelry</a>
+			</h1>
+			<nav>
+				<a href="./">Home</a> <a href="#" style="text-align: center" onclick="window.open( 'https://www.facebook.com/sanskrithiweb', 'saj_facebook' )"><div style="background-color: #3D579D; width: auto; padding-left: 4px; padding-right: 4px; padding-top: 1px; padding-bottom: 1px; margin: 0px">facebook</div></a> <a href="#" style="text-align: center"
+					onclick="window.open( 'https://www.facebook.com/sanskrithiweb', 'saj_facebook' )"><a href="cart.html">
+						<div style="position: relative; padding-top: 8px; padding-right: 10px">
+							<div style="border-radius: 50%; background: red; position: absolute; float: right; width: 25px; height: 25px; right: 0px; top: 0px">{{cart.items.length}}</div>
+							<div style="width: auto; padding-left: 4px; padding-right: 4px; padding-top: 1px; padding-bottom: 0px; margin: 0px; positon: absolute">
+								Cart&nbsp;<img src="./images/cart.png" style="margin: 0px; padding: 0px; padding-bottom: 1px; vertical-align: bottom;" />
+							</div>
+						</div>
+				</a>
+			</nav>
+		</div>
+
+	</header>
+
+
+
+		<ul id="etalage">
+			<li>
+				<img class="etalage_thumb_image" src="js/magnifier/image4_thumb.jpg">
+				<img class="etalage_source_image" src="js/magnifier/image4_large.jpg">
+			</li>
+			<li>
+				<img class="etalage_thumb_image" src="js/magnifier/image2_thumb.jpg">
+				<img class="etalage_source_image" src="js/magnifier/image2_large.jpg">
+			</li>
+		</ul>
+	
+		<a href="instructions.html">Back to instructions</a>
+		<br><br>
+		Change-callback in action.
+		<div id="alert">No change happened yet...</div>
+
+
+
+
+
+	<script src="js/filters/main.js"></script>
+
+</body>
+</html>

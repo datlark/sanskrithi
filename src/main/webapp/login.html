@@ -1,0 +1,80 @@
+
+
+	<div id="loginPage" class="modalDialog" style="z-index: 1;">
+
+		<div>
+			<a href="#close" title="Close" class="close">X</a>
+			<div id="login-form">
+
+				<input type="radio" checked id="login" name="switch" class="hide"> <input type="radio" id="signup" name="switch" class="hide">
+
+				<div>
+					<ul class="login-form-header">
+						<li><label for="login"><i class="fa fa-lock"></i> LOGIN</label></li>
+						<li><label for="signup"><i class="fa fa-credit-card"></i> REGISTER</label></li>
+					</ul>
+				</div>
+
+				<div class="login-section-out">
+
+					<section class="login-section">
+						<div class="login">
+
+							<div id="login-error" class="alert-box error" style="display: none">
+								<span>error: </span>Invalid EMail or Password!
+							</div>
+
+							<form ng-submit="login()">
+								<ul class="login-ul-list">
+									<li><input type="email" ng-model="login.email" required class="login-input" placeholder="Your Email" /><span class="icon"><i class="fa fa-user"></i></span></li>
+									<li><input type="password" ng-model="login.pass" required class="login-input" placeholder="Password" /><span class="icon"><i class="fa fa-lock"></i></span></li>
+									<li><span class="remember"><input type="checkbox" id="login-check" ng-model="login.save"> <label for="login-check">Remember Me</label></span><span class="remember"><a href="">Forgot Password</a></span></li>
+									<li><input type="submit" value="SIGN IN" class="login-button"></li>
+								</ul>
+							</form>
+						</div>
+
+						<div class="social-login">
+							<fb:login-button scope="public_profile,email" onlogin="checkLoginState();"></fb:login-button>
+							<div id="status"></div>
+
+
+							<!--
+												
+												Or sign in with &nbsp; <a href="" class="fb"><i class="fa fa-facebook"></i></a> 
+													<a href="" class="tw"><i class="fa fa-twitter"></i></a> <a href="" class="gp"><i class="fa fa-google-plus"></i></a> <a href="" class="in"><i class="fa fa-linkedin"></i></a>
+												 -->
+						</div>
+					</section>
+
+					<section class="signup-section">
+						<div class="login">
+
+							<div id="signup-error" class="alert-box error" style="display: none">
+								<span>Error: </span>Please contact sowji@sanskrithi.us
+							</div>
+
+							<form ng-submit="signup()">
+								<ul class="login-ul-list">
+									<li><input type="email" ng-model="login.email" required class="login-input" placeholder="Your Email" /><span class="icon"><i class="fa fa-user"></i></span></li>
+									<li><input type="text" ng-model="login.fname" required class="login-input" placeholder="Your Firstname" /><span class="icon"><i class="fa fa-info"></i></span></li>
+									<li><input type="text" ng-model="login.lname" required class="login-input" placeholder="Your Lastname" /><span class="icon"><i class="fa fa-info"></i></span></li>
+									<li><input type="password" ng-model="login.pass" required class="login-input" placeholder="Password" /><span class="icon"><i class="fa fa-lock"></i></span></li>
+									<li><input type="checkbox" required id="login-check1"> <label for="login-check1">I accept terms and conditions</label></li>
+									<li><input type="submit" value="SIGN UP" class="login-button"></li>
+								</ul>
+							</form>
+						</div>
+
+						<div class="social-login">
+							Or sign up with &nbsp; <a href="" class="login-fb"><i class="fa fa-facebook"></i></a>
+							<!-- 
+												 <a href="" class="tw"><i class="fa fa-twitter"></i></a> <a href="" class="gp"><i class="fa fa-google-plus"></i></a> <a href="" class="in"><i class="fa fa-linkedin"></i></a>
+												 -->
+						</div>
+					</section>
+				</div>
+
+			</div>
+		</div>
+	</div>
